@@ -15,6 +15,8 @@ loadSprite("mando", "sprites/Mando1stSprite.png");
 loadSprite("grogu-transit", "sprites/grogu-transit.png");
 loadSprite("ground", "sprites/ground.png");
 loadSprite("force", "sprites/force.png");
+loadSound("theme", "sounds/FluffingaDuck.mp3");
+
 
 
 const mando = add([
@@ -24,11 +26,6 @@ const mando = add([
 ]);
 
 
-const grogu = add([
-  sprite("grogu-transit"),
-  pos(0, 0),
-  scale(0.5),
-]);
 
 
 function shoot(obj) {
@@ -57,6 +54,7 @@ function shoot(obj) {
 
 // create game scenes
 scene("game", () => {
+  play("theme", { loop: true });
 
   const mando = add([
     sprite("mando"),
@@ -69,10 +67,9 @@ scene("game", () => {
   const grogu = add([
     sprite("grogu-transit"),
     pos(0, 0),
-    scale(0.5),
+    scale(0.4),
     body(),
     area(),
-
   ]);
 
   const movementSpeed = 1000;
@@ -119,14 +116,17 @@ scene("game", () => {
     "===========================",
   ], {
     // define the size of each block
-    width: 32,
-    height: 32,
+    width: 40,
+    height: 40,
     // define what each symbol means, by a function returning a component list (what will be passed to add())
     "=": () => [
       sprite("ground"),
       area(),
       solid(),
-      pos(20, 300)
+      pos(5, 350),
+      scale(1.2, 1.5),
+      layer("obj"),
+      fixed(),
     ],
 
   })
