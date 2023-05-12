@@ -11,3 +11,12 @@ h1 {
 h3 {
     font-family: 'Rajdhani', sans-serif;
 }
+.score-container {
+    display: flex;
+    flex-direction: row;
+
+}
+.score-container p {
+    margin: 1rem;
+    font-size: 2rem;
+}
