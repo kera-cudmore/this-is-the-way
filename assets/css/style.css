@@ -2,14 +2,31 @@ body {
   margin:0;
   overflow: hidden;
   font-family: 'Space Mono', monospace;
+  background-color: #a6695b;
+  width: 100%;
 }
 
-h1 {
-    font-family: 'Space Mono', monospace;
+#game-logo {
+    display: block;
+    align-items: center;
+    border: 2px solid black;
+    padding: 1rem;
+    background-color: #a6695b;
+}
+
+p {
+    font: 21px 'Space Mono', monospace;
+    border: 2px solid #40342d;
+    background-color: #40342d;
+    border-radius: 10px;
+    border-width: fit-content;
+    padding: 0.5rem;
+    color: whitesmoke;
+    text-shadow: 3px 3px 5px #ef554b;
 }
 
 h3 {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Space Mono', monospace;
 }
 .score-container {
     display: flex;
