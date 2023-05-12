@@ -28,3 +28,12 @@ p {
 h3 {
     font-family: 'Space Mono', monospace;
 }
+.score-container {
+    display: flex;
+    flex-direction: row;
+
+}
+.score-container p {
+    margin: 1rem;
+    font-size: 2rem;
+}
