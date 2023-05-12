@@ -1,6 +1,4 @@
-
 // initialize kaboom context
-
 kaboom({
   global: true,
   fullscreen: true,
@@ -14,8 +12,6 @@ kaboom({
 // loads sprite
 loadRoot("assets/");
 loadSprite("mando", "sprites/Mando1stSprite.png");
-// loadSprite("ground", "sprites/ground.png");
-
 loadSprite("grogu-transit", "sprites/grogu-transit.png");
 
 
@@ -77,8 +73,6 @@ scene("game", () => {
   //layers
   layers(['bg', 'obj', 'ui'], 'obj')
 
-  // add([sprite('grogu'), layer('ui')])
-  // add([layer('obj'), solid(), 'ground']);
   add([sprite, layer("obj")]);
 
 
