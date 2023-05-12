@@ -1,4 +1,13 @@
 body {
   margin:0;
   overflow: hidden;
+  font-family: 'Space Mono', monospace;
+}
+
+h1 {
+    font-family: 'Space Mono', monospace;
+}
+
+h3 {
+    font-family: 'Rajdhani', sans-serif;
 }
