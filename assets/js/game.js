@@ -55,6 +55,7 @@ function shoot(obj) {
 // create game scenes
 scene("game", () => {
   play("theme", { loop: true });
+  volume(0.1);
 
   const mando = add([
     sprite("mando"),
@@ -118,12 +119,11 @@ scene("game", () => {
     // define the size of each block
     width: 40,
     height: 40,
-    // define what each symbol means, by a function returning a component list (what will be passed to add())
     "=": () => [
       sprite("ground"),
       area(),
       solid(),
-      pos(5, 350),
+      pos(5, 340),
       scale(1.2, 1.5),
       layer("obj"),
       fixed(),
