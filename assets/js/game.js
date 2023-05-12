@@ -6,7 +6,7 @@ kaboom({
   canvas: document.querySelector("#game"),
   scale: 1,
   debug: true,
-  clearColor: [0, 0, 0, 0],
+  background: [0, 0, 0, 1],
 })
 
 // loads sprite
@@ -16,36 +16,41 @@ loadSprite("ground", "sprites/ground.png");
 
 loadSprite("grogu-transit", "sprites/grogu-transit.png");
 
+
+
 const mando = add([
   sprite("mando"),
-  pos(1210, 159),
+  pos(1210, 250),
   scale(1),
 ]);
 
 const ground = add([
   sprite("ground"),
-  pos(25, 195),
+  pos(30, 320),
   scale(2),
 ]);
 
+
 const grogu = add([
   sprite("grogu-transit"),
-  pos(0, 130),
+  pos(0, 250),
   scale(0.5),
 ]);
 
+
 addLevel([
-  '      ',
-  '  @   ',
-  '      ',
+  '           ',
+  '     @     ',
+  '           ',
   'xxxxxxxxxx',
   'xxxxxxxxxx',
   'xxxxxxxxxx',
 ], {
-  width: 40,
-  height: 40,
-  'x': [sprite('ground')]
+  'x': [sprite('ground'), solid()],
+
 });
+
+
 
 
 // create game scenes
@@ -57,7 +62,6 @@ scene("game", () => {
 
   // add([sprite('mando'), layer('ui')])
   add([layer('obj'), solid(), 'ground']);
-
 
 })
 
