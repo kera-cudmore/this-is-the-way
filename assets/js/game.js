@@ -1,6 +1,4 @@
-
 // initialize kaboom context
-
 kaboom({
   global: true,
   fullscreen: true,
@@ -14,8 +12,6 @@ kaboom({
 // loads sprite
 loadRoot("assets/");
 loadSprite("mando", "sprites/Mando1stSprite.png");
-// loadSprite("ground", "sprites/ground.png");
-
 loadSprite("grogu-transit", "sprites/grogu-transit.png");
 
 
@@ -71,38 +67,13 @@ addLevel([
 
 // create game scenes
 scene("game", () => {
-  const grogu = add([
-    sprite("grogu-transit"),
-    pos(0, 0),
-    scale(0.5),
-  ]);
 
-  const movementSpeed = 100;
-
-  keyDown("up", () => {
-    grogu.move(0, -movementSpeed);
-  });
-
-  keyDown("down", () => {
-    grogu.move(0, movementSpeed);
-  });
-
-  keyDown("left", () => {
-    grogu.move(-movementSpeed, 0);
-  });
-
-  keyDown("right", () => {
-    grogu.move(movementSpeed, 0);
-  });
 
 
   //layers
   layers(['bg', 'obj', 'ui'], 'obj')
 
-  // add([sprite('grogu'), layer('ui')])
-  // add([layer('obj'), solid(), 'ground']);
   add([sprite, layer("obj")]);
-
 
 
 })
