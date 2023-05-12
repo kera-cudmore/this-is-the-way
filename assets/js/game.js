@@ -1,4 +1,6 @@
+
 // initialize kaboom context
+
 kaboom({
   global: true,
   fullscreen: true,
@@ -6,13 +8,13 @@ kaboom({
   canvas: document.querySelector("#game"),
   scale: 1,
   debug: true,
-  background: [0, 0, 0, 1],
+  background: [0, 0, 0, 0],
 })
 
 // loads sprite
 loadRoot("assets/");
 loadSprite("mando", "sprites/Mando1stSprite.png");
-loadSprite("ground", "sprites/ground.png");
+// loadSprite("ground", "sprites/ground.png");
 
 loadSprite("grogu-transit", "sprites/grogu-transit.png");
 
@@ -24,18 +26,32 @@ const mando = add([
   scale(1),
 ]);
 
-const ground = add([
-  sprite("ground"),
-  pos(30, 320),
-  scale(2),
-]);
-
 
 const grogu = add([
   sprite("grogu-transit"),
-  pos(0, 250),
+  pos(0, 0),
   scale(0.5),
 ]);
+
+const movementSpeed = 100;
+
+keyDown("up", () => {
+  grogu.move(0, -movementSpeed);
+});
+
+keyDown("down", () => {
+  grogu.move(0, movementSpeed);
+});
+
+keyDown("left", () => {
+  grogu.move(-movementSpeed, 0);
+});
+
+keyDown("right", () => {
+  grogu.move(movementSpeed, 0);
+});
+
+
 
 
 addLevel([
@@ -46,8 +62,8 @@ addLevel([
   'xxxxxxxxxx',
   'xxxxxxxxxx',
 ], {
-  'x': [sprite('ground'), solid()],
-
+  'x': [sprite('ground'),
+  solid()],
 });
 
 
@@ -55,13 +71,39 @@ addLevel([
 
 // create game scenes
 scene("game", () => {
+  const grogu = add([
+    sprite("grogu-transit"),
+    pos(0, 0),
+    scale(0.5),
+  ]);
+
+  const movementSpeed = 100;
+
+  keyDown("up", () => {
+    grogu.move(0, -movementSpeed);
+  });
+
+  keyDown("down", () => {
+    grogu.move(0, movementSpeed);
+  });
+
+  keyDown("left", () => {
+    grogu.move(-movementSpeed, 0);
+  });
+
+  keyDown("right", () => {
+    grogu.move(movementSpeed, 0);
+  });
 
 
   //layers
   layers(['bg', 'obj', 'ui'], 'obj')
 
-  // add([sprite('mando'), layer('ui')])
-  add([layer('obj'), solid(), 'ground']);
+  // add([sprite('grogu'), layer('ui')])
+  // add([layer('obj'), solid(), 'ground']);
+  add([sprite, layer("obj")]);
+
+
 
 })
 
