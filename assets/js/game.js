@@ -14,6 +14,7 @@ loadRoot("assets/");
 loadSprite("mando", "sprites/Mando1stSprite.png");
 loadSprite("grogu-transit", "sprites/grogu-transit.png");
 loadSprite("ground", "sprites/ground.png");
+loadSprite("force", "sprites/force.png");
 
 
 const mando = add([
@@ -30,39 +31,27 @@ const grogu = add([
 ]);
 
 
-const movementSpeed = 100;
+function shoot(obj) {
+  const p = add([
+    scale(0.5),
+    sprite(obj.sprite),
+    pos(obj.pos),
+    origin('center'),
+    lifespan(1.5),
+    'projectile'
+  ]);
 
-// keyDown("up", () => {
-//   grogu.move(0, -movementSpeed);
-// });
+  const speed = obj.speed ?? 600;
+  const angle = obj.angle ?? 0;
+  const vx = speed * Math.cos(angle);
+  const vy = speed * Math.sin(angle);
 
-// keyDown("down", () => {
-//   grogu.move(0, movementSpeed);
-// });
+  p.action(() => {
+    p.move(vx * dt(), vy * dt());
+  });
 
-// keyDown("left", () => {
-//   grogu.move(-movementSpeed, 0);
-// });
-
-// keyDown("right", () => {
-//   grogu.move(movementSpeed, 0);
-// });
-
-
-
-
-// addLevel([
-//   '           ',
-//   '     @     ',
-//   '           ',
-//   'xxxxxxxxxx',
-//   'xxxxxxxxxx',
-//   'xxxxxxxxxx',
-// ], {
-//   'x': [sprite('ground'),
-//   solid()],
-// });
-
+  return p;
+}
 
 
 
@@ -76,18 +65,20 @@ scene("game", () => {
   ]);
 
 
+
   const grogu = add([
     sprite("grogu-transit"),
     pos(0, 0),
     scale(0.5),
     body(),
     area(),
+
   ]);
 
   const movementSpeed = 1000;
 
   keyDown("up", () => {
-    grogu.move(0, -movementSpeed);
+    grogu.jump(300);
   });
 
   keyDown("down", () => {
@@ -102,6 +93,17 @@ scene("game", () => {
     grogu.move(movementSpeed, 0);
   });
 
+
+
+  keyPress("space", () => {
+    shoot({
+      sprite: "force",
+      speed: 500,
+      angle: grogu.angle,
+      pos: grogu.pos.add(grogu.width / 2, grogu.height / 2),
+    });
+  });
+  
 
   //layers
   layers(['bg', 'obj', 'ui'], 'obj')
@@ -124,8 +126,9 @@ scene("game", () => {
       sprite("ground"),
       area(),
       solid(),
+      pos(20, 300)
     ],
-    
+
   })
 
 
