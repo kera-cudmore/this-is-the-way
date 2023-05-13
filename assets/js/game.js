@@ -1,5 +1,7 @@
+
 // initialize kaboom context
 kaboom({
+
   global: true,
 //   fullscreen: true,
   width:480,
@@ -9,6 +11,7 @@ kaboom({
   debug: true,
   background: [0, 0, 0, 0],
 })
+
 
 // loads sprite
 loadRoot("assets/");
@@ -21,49 +24,58 @@ loadSound("theme", "sounds/FluffingaDuck.mp3");
 
 
 const mando = add([
-  sprite("mando"),
-  pos(1210, 250),
-  scale(1),
+    sprite("mando"),
+    pos(1210, 250),
+    scale(1),
 ]);
 
 
 
 
 function shoot(obj) {
-  const p = add([
-    scale(0.5),
-    sprite(obj.sprite),
-    pos(obj.pos),
-    origin('center'),
-    lifespan(1.5),
-    'projectile'
-  ]);
+    const p = add([
+        scale(0.5),
+        sprite(obj.sprite),
+        pos(obj.pos),
+        origin('center'),
+        lifespan(1.5),
+        'projectile'
+    ]);
 
-  const speed = obj.speed ?? 600;
-  const angle = obj.angle ?? 0;
-  const vx = speed * Math.cos(angle);
-  const vy = speed * Math.sin(angle);
+    const speed = obj.speed ?? 600;
+    const angle = obj.angle ?? 0;
+    const vx = speed * Math.cos(angle);
+    const vy = speed * Math.sin(angle);
 
-  p.action(() => {
-    p.move(vx * dt(), vy * dt());
-  });
+    p.action(() => {
+        p.move(vx * dt(), vy * dt());
+    });
 
-  return p;
+    return p;
 }
 
 
 
 // create game scenes
 scene("game", () => {
-  play("theme", { loop: true });
-  volume(0.1);
+    play("theme", { loop: true });
+    volume(0.1);
 
-  const mando = add([
-    sprite("mando"),
-    pos(1210, 250),
-    scale(1),
-  ]);
+    const mando = add([
+        sprite("mando"),
+        pos(1210, 250),
+        scale(1),
+    ]);
 
+
+
+    const grogu = add([
+        sprite("grogu-transit"),
+        pos(0, 0),
+        scale(0.4),
+        body(),
+        area(),
+    ]);
 
 
   const grogu = add([
@@ -76,31 +88,34 @@ scene("game", () => {
 
   const movementSpeed = 100;
 
-  keyDown("up", () => {
-    grogu.jump(300);
-  });
 
-  keyDown("down", () => {
-    grogu.move(0, movementSpeed);
-  });
-
-  keyDown("left", () => {
-    grogu.move(-movementSpeed, 0);
-  });
-
-  keyDown("right", () => {
-    grogu.move(movementSpeed, 0);
-  });
-
-
-
-  keyPress("space", () => {
-    shoot({
-      sprite: "force",
-      speed: 500,
-      angle: grogu.angle,
-      pos: grogu.pos.add(grogu.width / 2, grogu.height / 2),
+    keyDown("up", () => {
+        grogu.jump(300);
     });
+
+    keyDown("down", () => {
+        grogu.move(0, movementSpeed);
+    });
+
+    keyDown("left", () => {
+        grogu.move(-movementSpeed, 0);
+    });
+
+    keyDown("right", () => {
+        grogu.move(movementSpeed, 0);
+    });
+
+
+
+    keyPress("space", () => {
+        shoot({
+            sprite: "force",
+            speed: 500,
+            angle: grogu.angle,
+            pos: grogu.pos.add(grogu.width / 2, grogu.height / 2),
+        });
+    });
+
   });
   
 
