@@ -93,7 +93,7 @@ scene("game", () => {
     const grogu = add([
         sprite("grogu-transit"),
         pos(20, 0),
-        scale(0.4),
+        scale(0.2),
         body(),
         area(),
     ]);
