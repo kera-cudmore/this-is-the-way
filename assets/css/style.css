@@ -158,6 +158,9 @@ footer {
     justify-content: space-between;
 }
 
+i {
+    color: #40342D;
+}
 
 /*---------- MEDIA QUERIES ----------*/
 /* Tablets */
