@@ -30,19 +30,25 @@ loadSound("theme", "sounds/FluffingaDuck.mp3");
 
 
 function moveBackAndForth(jawa, distance, speed) {
-    const initialPos = jawa.pos.x;
+  const initialPos = jawa.pos.x;
+  let direction = 1;
 
-    jawa.action(() => {
-        const currentPosition = jawa.pos.x - initialPos; // Calculate the current position relative to the initial position
+  jawa.action(() => {
+    const currentPosition = jawa.pos.x - initialPos;
 
-        if (currentPosition >= distance || currentPosition <= 0) {
-            speed *= -1; // Reverse the speed to change direction
-          }
-      
-          // Move the enemy in the current direction
-          jawa.move(speed, 0);
-        });
+    if (currentPosition >= distance || currentPosition <= 0) {
+      speed *= -1;
+      if (direction > 0) {
+        jawa.flipX(false); // flip the sprite to face left
+      } else {
+        jawa.flipX(true); // flip the sprite back to face right
       }
+      direction *= -1; // reverse the direction
+    }
+
+    jawa.move(speed, 0);
+  });
+}
 
 
 // const mando = add([
@@ -113,26 +119,26 @@ scene("game", () => {
     { distance: 200, speed: 70 },
     // Add more spawn positions as needed
   ];
-  
-  function spawnJawaAtPosition(position,distance,speed) {
-    const jawa= add([
-        sprite("jawa"),
-        pos(position.x,position.y),
-        scale(0.5),
-        body(),
-        area(),
+
+  function spawnJawaAtPosition(position, distance, speed) {
+    const jawa = add([
+      sprite("jawa"),
+      pos(position.x, position.y),
+      scale(0.5),
+      body(),
+      area(),
     ]);
-    moveBackAndForth(jawa,distance,speed);
+    moveBackAndForth(jawa, distance, speed);
   }
-  
+
   // Spawn enemies at fixed positions
-  jawaPositions.forEach((position,index) => {
+  jawaPositions.forEach((position, index) => {
     const configuration = jawasConfigurations[index];
     const distance = configuration.distance; // Use the distance value from the configuration
     const speed = configuration.speed;
-    spawnJawaAtPosition(position,distance,speed);
+    spawnJawaAtPosition(position, distance, speed);
   });
-  
+
 
   const grogu = add([
     sprite("grogu-transit"),
@@ -299,13 +305,13 @@ scene("game", () => {
       fixed(),
     ],
     "f": () => [
-        sprite("frogs"),
-        'frogs',
-        scale(0.6),
-        pos(0, 0),
-        layer("obj"),
-      ],
-   
+      sprite("frogs"),
+      'frogs',
+      scale(0.6),
+      pos(0, 0),
+      layer("obj"),
+    ],
+
   })
 
   add([sprite, layer("obj")]);
