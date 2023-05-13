@@ -7,14 +7,14 @@ let playerlives = 0;
 // initialize kaboom context
 kaboom({
 
-  global: true,
-  //   fullscreen: true,
-  width: 480,
-  height: 1600,
-  canvas: document.querySelector("#game"),
-  scale: 2,
-  debug: true,
-  background: [0, 0, 0, 0],
+    global: true,
+    //   fullscreen: true,
+    width: 480,
+    height: 1600,
+    canvas: document.querySelector("#game"),
+    scale: 2,
+    debug: true,
+    background: [0, 0, 0, 0],
 })
 
 
@@ -25,7 +25,8 @@ loadSprite("grogu-transit", "sprites/grogu-transit.png");
 loadSprite("jawa", "sprites/Jawa.png");
 loadSprite("ground", "sprites/ground.png");
 loadSprite("force", "sprites/force.png");
-loadSprite("frogs", "sprites/Frog(Points)Sprite.png");
+loadSprite("frogs", "sprites/Frog.png");
+loadSprite("brick", "sprites/decor.png")
 loadSound("theme", "sounds/FluffingaDuck.mp3");
 
 
@@ -37,12 +38,13 @@ function moveBackAndForth(jawa, distance, speed) {
 
         if (currentPosition >= distance || currentPosition <= 0) {
             speed *= -1; // Reverse the speed to change direction
-          }
-      
-          // Move the enemy in the current direction
-          jawa.move(speed, 0);
-        });
-      }
+        }
+
+        // Move the enemy in the current direction
+        jawa.move(speed, 0);
+    });
+}
+
 
 
 // const mando = add([
@@ -54,261 +56,286 @@ function moveBackAndForth(jawa, distance, speed) {
 
 
 function shoot(obj) {
-  const p = add([
-    scale(0.05),
-    sprite(obj.sprite),
-    pos(obj.pos),
-    origin('center'),
-    lifespan(1.5),
-    'projectile'
-  ]);
+    const p = add([
+        scale(0.05),
+        sprite(obj.sprite),
+        pos(obj.pos),
+        origin('center'),
+        lifespan(1.5),
+        'projectile'
+    ]);
 
-  const speed = obj.speed ?? 600;
-  const angle = obj.angle ?? 0;
-  const vx = speed * Math.cos(angle);
-  const vy = speed * Math.sin(angle);
+    const speed = obj.speed ?? 600;
+    const angle = obj.angle ?? 0;
+    const vx = speed * Math.cos(angle);
+    const vy = speed * Math.sin(angle);
 
-  p.action(() => {
-    p.move(vx * dt(), vy * dt());
-  });
+    p.action(() => {
+        p.move(vx * dt(), vy * dt());
+    });
 
-  return p;
+    return p;
 }
 
 
 
 // create game scenes
 scene("game", () => {
-  // play("theme", { loop: true });
-  // volume(0.1);
+    // play("theme", { loop: true });
+    // volume(0.1);
 
-  score.innerText = playerscore;
-  livesLeft.innerText = playerlives;
+    score.innerText = playerscore;
+    livesLeft.innerText = playerlives;
 
-  const mando = add([
-    sprite("mando"),
-    pos(20, 1510),
-    scale(0.6),
-    area(),
-  ]);
+    const mando = add([
+        sprite("mando"),
+        pos(20, 1510),
+        scale(0.6),
+        area(),
+    ]);
 
 
-  const jawaPositions = [
-    vec2(20, 100),
-    vec2(100, 300),
-    vec2(20, 600),
-    vec2(100, 400),
-    vec2(40, 700),
-    vec2(140, 900),
-    vec2(200, 1200),
-    // Add more spawn positions as needed
-  ];
-  const jawasConfigurations = [
-    { distance: 250, speed: 70 },
-    { distance: 250, speed: 70 },
-    { distance: 150, speed: 70 },
-    { distance: 200, speed: 70 },
-    { distance: 200, speed: 70 },
-    { distance: 150, speed: 70 },
-    { distance: 200, speed: 70 },
-    // Add more spawn positions as needed
-  ];
-  
-  function spawnJawaAtPosition(position,distance,speed) {
-    const jawa= add([
-        sprite("jawa"),
-        pos(position.x,position.y),
-        scale(0.5),
+    const jawaPositions = [
+        vec2(20, 100),
+        vec2(100, 300),
+        vec2(20, 600),
+        vec2(100, 400),
+        vec2(40, 700),
+        vec2(140, 900),
+        vec2(200, 1200),
+        // Add more spawn positions as needed
+    ];
+    const jawasConfigurations = [
+        { distance: 250, speed: 70 },
+        { distance: 250, speed: 70 },
+        { distance: 150, speed: 70 },
+        { distance: 200, speed: 70 },
+        { distance: 200, speed: 70 },
+        { distance: 150, speed: 70 },
+        { distance: 200, speed: 70 },
+        // Add more spawn positions as needed
+    ];
+
+    function spawnJawaAtPosition(position, distance, speed) {
+        const jawa = add([
+            sprite("jawa"),
+            pos(position.x, position.y),
+            scale(0.5),
+            body(),
+            area(),
+        ]);
+        moveBackAndForth(jawa, distance, speed);
+    }
+
+    // Spawn enemies at fixed positions
+    jawaPositions.forEach((position, index) => {
+        const configuration = jawasConfigurations[index];
+        const distance = configuration.distance; // Use the distance value from the configuration
+        const speed = configuration.speed;
+        spawnJawaAtPosition(position, distance, speed);
+    });
+
+
+    const grogu = add([
+        sprite("grogu-transit"),
+        pos(20, 0),
+        scale(0.05),
         body(),
         area(),
     ]);
-    moveBackAndForth(jawa,distance,speed);
-  }
-  
-  // Spawn enemies at fixed positions
-  jawaPositions.forEach((position,index) => {
-    const configuration = jawasConfigurations[index];
-    const distance = configuration.distance; // Use the distance value from the configuration
-    const speed = configuration.speed;
-    spawnJawaAtPosition(position,distance,speed);
-  });
-  
 
-  const grogu = add([
-    sprite("grogu-transit"),
-    pos(20, 0),
-    scale(0.05),
-    body(),
-    area(),
-  ]);
-
-  grogu.collides('frogs', (f) => {
-    destroy(f)
-    livesLeft.innerText = ++playerlives;
-  })
-
-
-  const movementSpeed = 100;
-
-
-  keyDown("up", () => {
-    grogu.jump(300);
-  });
-
-  keyDown("down", () => {
-    grogu.move(0, movementSpeed);
-  });
-
-  keyDown("left", () => {
-    grogu.move(-movementSpeed, 0);
-    grogu.flipX(true);
-  });
-
-  keyDown("right", () => {
-    grogu.move(movementSpeed, 0);
-    grogu.flipX(false);
-  });
-
-
-  keyPress("space", () => {
-    shoot({
-      sprite: "force",
-      speed: 500,
-      angle: grogu.angle,
-      pos: grogu.pos.add(grogu.width / 10, grogu.height / 30),
+    action("frogs", (f) => {
+        f.move(0, -10);
+        f.action(() => {
+          if (f.grounded()) {
+            f.jump(10);
+          }
+        });
     });
-  });
 
-  //layers
-  layers(['bg', 'obj', 'ui'], 'obj')
+    
 
-  addLevel([
-    "                              ",
-    "                         f    ",
-    "                              ",
-    "                              ",
-    "                              ",
-    "=============     ============",
-    "=============     ============",
-    "                  ==          ",
-    "                  ==          ",
-    "           =========          ",
-    " f         =========    ======",
-    "                        ======",
-    "                              ",
-    "                              ",
-    "                              ",
-    "=========================     ",
-    "=========================     ",
-    "=========================     ",
-    "                              ",
-    "                              ",
-    "                              ",
-    "     =========================",
-    "     =========================",
-    "     =========================",
-    "     =========================",
-    "                              ",
-    "                              ",
-    "                              ",
-    "=====================         ",
-    "=====================         ",
-    "                              ",
-    "                              ",
-    "                              ",
-    "                     =========",
-    "                f    =========",
-    "               ==             ",
-    "                              ",
-    "                              ",
-    "                              ",
-    "                              ",
-    "=============           ======",
-    "=============           ======",
-    "=============           ======",
-    "=============           ======",
-    "                 =============",
-    "                 =============",
-    "                              ",
-    "                              ",
-    "                              ",
-    "==================            ",
-    "==================            ",
-    "=======================       ",
-    "=======================       ",
-    "                              ",
-    "                              ",
-    "                   f    ======",
-    "                        ======",
-    "                              ",
-    "         ============         ",
-    "         ==================   ",
-    "======   ==================   ",
-    "======   ==================   ",
-    "======                        ",
-    "======                        ",
-    "======                        ",
-    "=========================     ",
-    "=========================     ",
-    "                       ====   ",
-    "                       ==     ",
-    "                              ",
-    "                              ",
-    "            ==================",
-    "            ==================",
-    "        ==                    ",
-    "                              ",
-    "                              ",
-    "                              ",
-    "                              ",
-    "===========  f                ",
-    "===========                   ",
-    "==========================    ",
-    "==========================    ",
-    "===========           ====    ",
-    "===========           ====    ",
-    "===========           ====    ",
-    "===========          ======   ",
-    "============         ======   ",
-    "============                  ",
-    "                              ",
-    "   f                          ",
-    "                      ========",
-    "                      ========",
-    "============     ==== ========",
-    "============     ==== ========",
-    "                             =",
-    "                             =",
-    "                             =",
-    "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$",
-    "==============================",
-    "==============================",
+    grogu.collides('frogs', (f) => {
+        destroy(f)
+        livesLeft.innerText = ++playerlives;
+    })
 
 
-  ], {
-    // define the size of each block
-    width: 16,
-    height: 16,
-    "=": () => [
-      sprite("ground"),
-      area(),
-      solid(),
-      scale(1),
-      pos(0, 0),
-      layer("obj"),
-      fixed(),
-    ],
-    "f": () => [
-        sprite("frogs"),
-        'frogs',
-        scale(0.6),
-        pos(0, 0),
-        layer("obj"),
-      ],
-   
-  })
+    const movementSpeed = 100;
 
-  add([sprite, layer("obj")]);
+
+    keyDown("up", () => {
+        grogu.jump(300);
+    });
+
+    keyDown("down", () => {
+        grogu.move(0, movementSpeed);
+    });
+
+    keyDown("left", () => {
+        grogu.move(-movementSpeed, 0);
+        grogu.flipX(true);
+    });
+
+    keyDown("right", () => {
+        grogu.move(movementSpeed, 0);
+        grogu.flipX(false);
+    });
+
+
+    keyPress("space", () => {
+        shoot({
+            sprite: "force",
+            speed: 500,
+            angle: grogu.angle,
+            pos: grogu.pos.add(grogu.width / 10, grogu.height / 30),
+        });
+    });
+
+    //layers
+    layers(['bg', 'obj', 'ui'], 'obj')
+
+    addLevel([
+        "                              ",
+        "                         f    ",
+        "                         #    ",
+        "                              ",
+        "                              ",
+        "=============     ============",
+        "=============     ============",
+        "                  ==          ",
+        "                  ==          ",
+        "           =========          ",
+        " f         =========    ======",
+        " #                      ======",
+        "                              ",
+        "                              ",
+        "                              ",
+        "=========================     ",
+        "=========================     ",
+        "=========================     ",
+        "                              ",
+        "                              ",
+        "                              ",
+        "     =========================",
+        "     =========================",
+        "     =========================",
+        "     =========================",
+        "                              ",
+        "                              ",
+        "                              ",
+        "=====================         ",
+        "=====================         ",
+        "                              ",
+        "                              ",
+        "         f                    ",
+        "         #           =========",
+        "                     =========",
+        "                              ",
+        "                              ",
+        "                              ",
+        "                              ",
+        "                              ",
+        "=============           ======",
+        "=============           ======",
+        "=============           ======",
+        "=============           ======",
+        "                 =============",
+        "                 =============",
+        "                              ",
+        "                              ",
+        "                              ",
+        "==================            ",
+        "==================            ",
+        "=======================       ",
+        "=======================       ",
+        "                              ",
+        "         f                    ",
+        "         #              ======",
+        "                        ======",
+        "                              ",
+        "         ============         ",
+        "         ==================   ",
+        "======   ==================   ",
+        "======   ==================   ",
+        "======                        ",
+        "======                        ",
+        "======                        ",
+        "=========================     ",
+        "=========================     ",
+        "                       ====   ",
+        "                       ==     ",
+        "                              ",
+        "                              ",
+        "            ==================",
+        "            ==================",
+        "        ==                    ",
+        "                   f          ",
+        "                   #          ",
+        "                              ",
+        "                              ",
+        "===========                   ",
+        "===========                   ",
+        "==========================    ",
+        "==========================    ",
+        "===========           ====    ",
+        "===========           ====    ",
+        "===========           ====    ",
+        "===========          ======   ",
+        "============         ======   ",
+        "============                  ",
+        "                              ",
+        "        f                     ",
+        "        #             ========",
+        "                      ========",
+        "============     ==== ========",
+        "============     ==== ========",
+        "                             =",
+        "                             =",
+        "                             =",
+        "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$",
+        "==============================",
+        "==============================",
+
+
+    ], {
+        // define the size of each block
+        width: 16,
+        height: 16,
+        "=": () => [
+            sprite("ground"),
+            area(),
+            solid(),
+            scale(1),
+            pos(0, 0),
+            layer("obj"),
+            fixed(),
+        ],
+        "f": () => [
+            sprite("frogs"),
+            'frogs',
+            area(),
+            solid(),
+            scale(0.4),
+            pos(0, 0),
+            layer("obj"),
+            body(),
+
+
+        ],
+        "#": () => [
+            sprite("brick"),
+            area(),
+            solid(),
+            scale(1),
+            pos(0, 0),
+            layer("obj"),
+            fixed(),
+        ],
+
+    })
+
+    add([sprite, layer("obj")]);
 
 });
 // start game
