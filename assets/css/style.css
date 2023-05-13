@@ -102,7 +102,6 @@ footer {
     display:flex;
     flex-direction: column;
     bottom:0;
-    position: absolute;
     width:100%;
 }
 
