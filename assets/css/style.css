@@ -50,6 +50,11 @@ body {
 #game{
     background-image: url(/assets/sprites/sandcrawler-lvl.png);
     background-size: cover;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 /*----- Text -----*/
