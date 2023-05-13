@@ -94,13 +94,27 @@ scene("game", () => {
 
 
   const jawaPositions = [
-    vec2(100, 100),
-    vec2(200, 200),
-    vec2(300, 300),
+    vec2(20, 100),
+    vec2(100, 300),
+    vec2(20, 600),
+    vec2(100, 400),
+    vec2(40, 700),
+    vec2(140, 900),
+    vec2(200, 1200),
+    // Add more spawn positions as needed
+  ];
+  const jawasConfigurations = [
+    { distance: 250, speed: 70 },
+    { distance: 250, speed: 70 },
+    { distance: 150, speed: 70 },
+    { distance: 200, speed: 70 },
+    { distance: 200, speed: 70 },
+    { distance: 150, speed: 70 },
+    { distance: 200, speed: 70 },
     // Add more spawn positions as needed
   ];
   
-  function spawnJawaAtPosition(position) {
+  function spawnJawaAtPosition(position,distance,speed) {
     const jawa= add([
         sprite("jawa"),
         pos(position.x,position.y),
@@ -108,12 +122,15 @@ scene("game", () => {
         body(),
         area(),
     ]);
-    moveBackAndForth(jawa,200,50);
+    moveBackAndForth(jawa,distance,speed);
   }
   
   // Spawn enemies at fixed positions
-  jawaPositions.forEach((position) => {
-    spawnJawaAtPosition(position);
+  jawaPositions.forEach((position,index) => {
+    const configuration = jawasConfigurations[index];
+    const distance = configuration.distance; // Use the distance value from the configuration
+    const speed = configuration.speed;
+    spawnJawaAtPosition(position,distance,speed);
   });
   
 
@@ -284,12 +301,9 @@ scene("game", () => {
     "f": () => [
         sprite("frogs"),
         'frogs',
-        area(),
-        solid(),
         scale(0.6),
         pos(0, 0),
         layer("obj"),
-        body(),
       ],
    
   })
