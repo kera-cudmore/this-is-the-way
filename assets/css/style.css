@@ -1,61 +1,25 @@
+/*----- ROOT VARIABLES -----*/
+:root {
+    /* Typography Variables */
+    --space-font: 'Space Mono', monospace;
+    
+    /* Colour Variables */
+    --white: #F5F5F5;
+    --orange: #ef554b;
+    --purple: #8C6175;
+    --brown: #40342D;
+    --camel: #A6695B;
+    --dusty-pink: #A66868;
+    --black: #000000;
+}
+
+/*----- Containers -----*/
 body {
-  margin:0;
-  /* overflow: hidden; */
-  font-family: 'Space Mono', monospace;
-  background-color: #a6695b;
-  width: 100%;
-}
-
-#game-logo {
-    display: block;
-    align-items: center;
-    border: 2px solid black;
-    padding: 1rem;
-    background-color: #a6695b;
-}
-
-p {
-    font: 21px 'Space Mono', monospace;
-    border: 2px solid #40342d;
-    background-color: #40342d;
-    border-radius: 10px;
-    border-width: fit-content;
-    padding: 0.5rem;
-    color: whitesmoke;
-    text-shadow: 3px 3px 5px #ef554b;
-}
-
-h3 {
-    font-family: 'Space Mono', monospace;
-}
-.score-container {
-    display: flex;
-    flex-direction: row;
-
-}
-.score-container p {
-    margin: 1rem;
-    font-size: 2rem;
-}
-
-
-a {
-    text-decoration: none;
-    margin-right: 1rem;
-}
-
-.btn {
-    font: 2rem 'Space Mono', monospace;
-    border: 2px solid #40342d;
-    background-color: #40342d;
-    border-radius: 10px;
-    border-width: fit-content;
-    padding: 0.5rem;
-    color: whitesmoke;
-    text-shadow: 3px 3px 5px #ef554b;
-    text-align: center;
-    align-self:center;
-    justify-content: end;
+    margin:0;
+    /* overflow: hidden; */
+    font-family: var(--space-font);
+    background-color:var(--camel);
+    width: 100%;
 }
 
 .nav__container {
@@ -64,8 +28,23 @@ a {
     justify-content:space-between;
 }
 
+.score-container {
+    display: flex;
+    flex-direction: row;
+
+}
+
 .audio__container {
     display: flex;
+}
+
+
+#game-logo {
+    display: block;
+    text-align: center;
+    border: 2px solid var(--black);
+    padding: 1rem;
+    background-color: var(--camel);
 }
 
 #game{
@@ -73,3 +52,43 @@ a {
     background-size: cover;
 }
 
+/*----- Text -----*/
+h3 {
+    font-family: var(--space-font);
+}
+
+p {
+    font: 21px var(--space-font);
+    border: 2px solid var(--brown);
+    background-color: var(--brown);
+    border-radius: 10px;
+    border-width: fit-content;
+    padding: 0.5rem;
+    color: var(--white);
+    text-shadow: 3px 3px 5px var(--orange);
+}
+
+.score-container p {
+    margin: 1rem;
+    font-size: 2rem;
+}
+
+a {
+    text-decoration: none;
+    margin-right: 1rem;
+}
+
+/* music button */
+.btn {
+    font: 2rem var(--space-font);
+    border: 2px solid var(--brown);
+    background-color: var(--brown);
+    border-radius: 10px;
+    border-width: fit-content;
+    padding: 0.5rem;
+    color: whitesmoke;
+    text-shadow: 3px 3px 5px var(--orange);
+    text-align: center;
+    align-self:center;
+    justify-content: end;
+}
