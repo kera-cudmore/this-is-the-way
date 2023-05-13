@@ -30,8 +30,6 @@ loadSound("theme", "sounds/FluffingaDuck.mp3");
 // Level Sprites
 
 
-
-
 const mando = add([
   sprite("mando"),
   pos(1210, 250),
@@ -43,7 +41,7 @@ const mando = add([
 
 function shoot(obj) {
   const p = add([
-    scale(0.5),
+    scale(0.05),
     sprite(obj.sprite),
     pos(obj.pos),
     origin('center'),
@@ -115,17 +113,14 @@ scene("game", () => {
   });
 
 
-
   keyPress("space", () => {
     shoot({
       sprite: "force",
       speed: 500,
       angle: grogu.angle,
-      pos: grogu.pos.add(grogu.width / 2, grogu.height / 2),
+      pos: grogu.pos.add(grogu.width / 10, grogu.height / 30),
     });
   });
-
-
 
   //layers
   layers(['bg', 'obj', 'ui'], 'obj')
@@ -246,7 +241,7 @@ scene("game", () => {
       layer("obj"),
       fixed(),
     ],
-   
+
   })
 
   add([sprite, layer("obj")]);
