@@ -1,96 +1,143 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="This is the Way - a javascript browser-based game inspired by Grogu from the Mandolorian, created for the May 2023 Code Institute Hackathon">
-  <meta name="keywords" content="Grogu, Mandolorian, JavaScript Game, Browser-based Game, Game">
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="This is the Way - a javascript browser-based game inspired by Grogu from the Mandolorian, created for the May 2023 Code Institute Hackathon">
+      <meta name="keywords" content="Grogu, Mandolorian, JavaScript Game, Browser-based Game, Game">
 
-  <!-- Social Media Integration Meta Tags -->
-  <!-- Facebook, LinkedIn, Google -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="This is the Way">
-  <meta property="og:description" content="This is the Way - a javascript browser-based game inspired by Grogu from the Mandolorian, created for the May 2023 Code Institute Hackathon">
-  <meta name="image" property="og:image" content="URL TO IMAGE">
-  <meta property="og:image:alt" content="This is the Way Game shown on a variety of Devices">
-  <meta property="og:url" content="#">
-  <meta property="og:site_name" content="This is the Way">
-  <meta name="author" content="Team Livin' La Vida Yoda">
+      <!-- Social Media Integration Meta Tags -->
+      <!-- Facebook, LinkedIn, Google -->
+      <meta property="og:type" content="website">
+      <meta property="og:title" content="This is the Way">
+      <meta property="og:description" content="This is the Way - a javascript browser-based game inspired by Grogu from the Mandolorian, created for the May 2023 Code Institute Hackathon">
+      <meta name="image" property="og:image" content="URL TO IMAGE">
+      <meta property="og:image:alt" content="This is the Way Game shown on a variety of Devices">
+      <meta property="og:url" content="https://kera-cudmore.github.io/this-is-the-way/">
+      <meta property="og:site_name" content="This is the Way">
+      <meta name="author" content="Team Livin' La Vida Yoda">
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="This is the Way">
-  <meta name="twitter:description" content="This is the Way - a javascript browser-based game inspired by Grogu from the Mandolorian, created for the May 2023 Code Institute Hackathon">
-  <meta name="twitter:image" content="URL TO IMAGE">
-  <meta name="twitter:image:alt" content="This is the Way Game shown on a variety of Devices">
-  
-  <!-- Favicon -->
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
-  <link rel="manifest" href="assets/favicon/site.webmanifest">
+      <!-- Twitter -->
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:title" content="This is the Way">
+      <meta name="twitter:description" content="This is the Way - a javascript browser-based game inspired by Grogu from the Mandolorian, created for the May 2023 Code Institute Hackathon">
+      <meta name="twitter:image" content="URL TO IMAGE">
+      <meta name="twitter:image:alt" content="This is the Way Game shown on a variety of Devices">
+      
+      <!-- Favicon -->
+      <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+      <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+      <link rel="manifest" href="assets/favicon/site.webmanifest">
 
-  <link rel="stylesheet" href="/assets/css/style.css">
+      <link rel="stylesheet" href="assets/css/style.css">
 
-  <title>This is the Way</title>
-</head>
+      <title>This is the Way</title>
+    </head>
 
-<body>
+    <body>
 
-
-<nav class="nav__container">
-    <div class="score-container">
-        <p>Score: <span id="your-score"></span></p>
-        <p>Lives: <span id="question-remaining"></span></p> 
-    </div>
-
-  <!-- AUDIO BUTTON-->
-  <div class="audio__container">
-    <a href="#" id="audioControl" class="btn">Play Music!</a>
-    <audio id="yourAudio" preload='none'>
-      <source src='assets/sounds/theme.mp3' type='audio/mpeg' />
-    </audio>
-  </div>
-
-</nav>
-
-    <nav>
-        <div id="game-logo">
-            <a href="https://fontmeme.com/the-mandalorian-font/"><img src="https://fontmeme.com/permalink/230512/6a941263a2465b982bbb1fe1a4ddb4b7.png" alt="the-mandalorian-font"></a>
-            <p>Help Grogu find his way back to the Madalorian!</p>
+      <!-- Nav -->
+      <nav class="nav__container">
+        <div class="score-container">
+          <p>Score: <span id="your-score"></span></p>
+          <p>Lives: <span id="question-remaining"></span></p> 
         </div>
-    </nav>
 
-
-    <canvas id="game"></canvas>
-
-    <footer>
-    <section>
-        <div>
-            <h3>Livin' la Vida Yoda team:</h3>
+        <!-- AUDIO BUTTON-->
+        <div class="audio__container">
+          <a href="#" id="audioControl" class="btn">Play Music!</a>
+          <audio id="yourAudio" preload='none'>
+            <source src='assets/sounds/theme.mp3' type='audio/mpeg' />
+          </audio>
         </div>
-        <div>
+      </nav>
+
+      <!-- Site Banner -->
+      <div id="game-logo">
+        <a href="https://fontmeme.com/the-mandalorian-font/"><img src="https://fontmeme.com/permalink/230512/6a941263a2465b982bbb1fe1a4ddb4b7.png" alt="the-mandalorian-font"></a>
+        <p>Help Grogu find his way back to the Madalorian!</p>
+      </div>
+
+      <!-- Game Canvas -->
+      <canvas id="game"></canvas>
+
+      <!-- Footer -->
+      <footer>
+        <section>
+          <div>
+            <h3>Team Livin' la Vida Yoda:</h3>
+          </div>
+          <div>
             <ul>
-                <li>Kera Kudmore <a href="https://github.com/kera-cudmore" target="_blank"><i class="fa-brands fa-square-github fa-lg"></i></a> <a href="https://www.linkedin.com/in/keracudmore" target="_blank"><i class="fa-brands fa-linkedin fa-lg"></i></a></li>
-                <li>Jody Murray <a href="https://github.com/jodymurray" target="_blank"><i class="fa-brands fa-square-github fa-lg"></i></a> <a href="https://www.linkedin.com/in/jodymurray" target="_blank"><i class="fa-brands fa-linkedin fa-lg"></i></a></li>
-                <li>Tanguy Alexandre <a href="https://github.com/tlalexandre" target="_blank"><i class="fa-brands fa-square-github fa-lg"></i></a> <a href="https://www.linkedin.com/in/tanguy-l-alexandre-a72694272" target="_blank"><i class="fa-brands fa-linkedin fa-lg"></i></a></li>
-                <li>Soorya George <a href="https://github.com/SooryaGeorge7" target="_blank"><i class="fa-brands fa-square-github fa-lg"></i></a> <a href="https://www.linkedin.com/in/soorya-george-6707a024a" target="_blank"><i class="fa-brands fa-linkedin fa-lg"></i></a></li>
-                <li>Christian Göran <a href="https://github.com/christiangoran" target="_blank"><i class="fa-brands fa-square-github fa-lg"></i></a> <a href="https://www.linkedin.com/in/" target="_blank"><i class="fa-brands fa-linkedin fa-lg"></i></a></li>
-                <li>Megan O'Donohoe <a href="https://github.com/modonohoe" target="_blank"><i class="fa-brands fa-square-github fa-lg"></i></a> <a href="https://www.linkedin.com/in/megan-o-donohoe-29022b264" target="_blank"><i class="fa-brands fa-linkedin fa-lg"></i></a></li>
+              <li>Kera Cudmore 
+                <a href="https://github.com/kera-cudmore" target="_blank">
+                  <i class="fa-brands fa-square-github fa-lg"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/keracudmore" target="_blank">
+                  <i class="fa-brands fa-linkedin fa-lg"></i>
+                </a>
+              </li>
+              
+              <li>Jody Murray
+                <a href="https://github.com/jodymurray" target="_blank">
+                  <i class="fa-brands fa-square-github fa-lg"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/jodymurray" target="_blank">
+                  <i class="fa-brands fa-linkedin fa-lg"></i>
+                </a>
+              </li>
+              
+              <li>Tanguy Alexandre
+                <a href="https://github.com/tlalexandre" target="_blank">
+                  <i class="fa-brands fa-square-github fa-lg"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/tanguy-l-alexandre-a72694272" target="_blank">
+                  <i class="fa-brands fa-linkedin fa-lg"></i>
+                </a>
+              </li>
+
+              <li>Soorya George
+                <a href="https://github.com/SooryaGeorge7" target="_blank">
+                  <i class="fa-brands fa-square-github fa-lg"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/soorya-george-6707a024a" target="_blank">
+                  <i class="fa-brands fa-linkedin fa-lg"></i>
+                </a>
+              </li>
+              
+              <li>Christian Göran
+                <a href="https://github.com/christiangoran" target="_blank">
+                  <i class="fa-brands fa-square-github fa-lg"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/" target="_blank">
+                  <i class="fa-brands fa-linkedin fa-lg"></i>
+                </a>
+              </li>
+
+              <li>Megan O'Donohoe 
+                <a href="https://github.com/modonohoe" target="_blank">
+                  <i class="fa-brands fa-square-github fa-lg"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/megan-o-donohoe-29022b264" target="_blank">
+                  <i class="fa-brands fa-linkedin fa-lg"></i>
+                </a>
+              </li>
             </ul>
-        </div>
-    </section>
-    </footer>
-    <!-- KaboomJS Script -->
-    <script src="https://unpkg.com/kaboom/dist/kaboom.js"></script>
+          </div>
+        </section>
+      </footer>
 
-    <!-- Game JS File-->
-    <script src="assets/js/game.js"></script>
-    <script src="assets/js/music.js"></script>
-    <script src="assets/js/ee.js"></script>
+      <!-- KaboomJS Script -->
+      <script src="https://unpkg.com/kaboom/dist/kaboom.js"></script>
 
-    <!-- font awesome script -->
-    <script src="https://kit.fontawesome.com/f916b749a1.js" crossorigin="anonymous"></script>
-</body>
+      <!-- Game JS Files -->
+      <script src="assets/js/game.js"></script>
+      <script src="assets/js/music.js"></script>
+      <script src="assets/js/ee.js"></script>
+
+      <!-- font awesome script -->
+      <script src="https://kit.fontawesome.com/f916b749a1.js" crossorigin="anonymous"></script>
+  </body>
 </html>
