@@ -1,6 +1,7 @@
 /*----- ROOT VARIABLES -----*/
 :root {
     /* Typography Variables */
+    --mandolore: 'Mandalore', monospace;
     --space-font: 'Space Mono', monospace;
     
     /* Colour Variables */
@@ -11,6 +12,9 @@
     --camel: #A6695B;
     --dusty-pink: #A66868;
     --black: #000000;
+
+    --x: -6px;
+    --y: -4px;
 }
 
 /*----- Containers -----*/
@@ -38,6 +42,10 @@ body {
     display: flex;
 }
 
+.page__container {
+    text-align: center;
+    padding-top: 2rem;
+}
 
 #game-logo {
     display: block;
@@ -58,6 +66,29 @@ body {
 }
 
 /*----- Text -----*/
+h1 {
+    font-family: var(--mandolore);
+    font-weight: normal;
+    font-style: normal;
+    color:var(--purple);
+    margin: .5rem;
+    text-align: center;
+    font-size: 2.9rem;
+    text-shadow: calc(-5px * -1) calc(-5px * -1) 0px var(--black);
+    -webkit-text-stroke: 2px var(--black);
+    
+}
+
+
+h2 {
+    font-family: var(--space-font);
+    font-weight: normal;
+    font-style: normal;
+    color:var(--black);
+    margin: 0;
+    font-size: 1rem;
+}
+
 h3 {
     font-family: var(--space-font);
 }
@@ -98,6 +129,10 @@ a {
     justify-content: end;
 }
 
+img {
+    height: 150px;
+}
+
 footer {
     display:flex;
     flex-direction: column;
@@ -121,4 +156,45 @@ footer {
     display:flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+
+/*---------- MEDIA QUERIES ----------*/
+/* Tablets */
+@media only screen and (min-width : 481px) {
+
+    .page__container {
+        padding-top: 3rem;
+    }
+
+    h1 {
+        font-size: 8rem;
+        text-shadow: calc(-10px * -1) calc(-10px * -1) 0px var(--black);
+        margin: 1rem;
+    }
+
+    img {
+        height: 250px;
+    }
+
+    h2 {
+        font-size: 1rem;
+    }
+}
+
+  /* Laptops */
+@media only screen and (min-width : 769px) {
+
+
+    h1 {
+        font-size: 12rem;
+    }
+
+    img {
+        height: 800px;
+    };
+
+    h2 {
+        font-size: 2rem;
+    }    
 }
