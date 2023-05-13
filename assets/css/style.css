@@ -81,7 +81,7 @@ h1 {
     color: var(--purple);
     margin: .5rem;
     text-align: center;
-    font-size: 2rem;
+    font-size: 2.9rem;
     text-shadow: calc(-5px * -1) calc(-5px * -1) 0px var(--black);
     -webkit-text-stroke: 2px var(--black);
 
@@ -200,7 +200,7 @@ i {
 
 
     h1 {
-        font-size: 7rem;
+        font-size: 12rem;
     }
 
     img {
