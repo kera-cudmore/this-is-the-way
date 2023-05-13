@@ -1,4 +1,10 @@
 
+const score = document.getElementById('your-score');
+const livesLeft = document.getElementById('lives-remaining');
+
+let playerscore = 0;
+let playerlives = 0;
+
 // initialize kaboom context
 kaboom({
 
@@ -19,6 +25,7 @@ loadSprite("mando", "sprites/Mando1stSprite.png");
 loadSprite("grogu-transit", "sprites/grogu-transit.png");
 loadSprite("ground", "sprites/ground.png");
 loadSprite("force", "sprites/force.png");
+loadSprite("frogs","sprites/Frog(Points)Sprite.png");
 loadSound("theme", "sounds/FluffingaDuck.mp3");
 
 // Level Sprites
@@ -72,6 +79,9 @@ scene("game", () => {
     // play("theme", { loop: true });
     // volume(0.1);
 
+    score.innerText = playerscore;
+    livesLeft.innerText = playerlives;
+
     const mando = add([
         sprite("mando"),
         pos(1210, 250),
@@ -82,11 +92,13 @@ scene("game", () => {
 
     const grogu = add([
         sprite("grogu-transit"),
-        pos(0, 0),
+        pos(20, 0),
         scale(0.4),
         body(),
         area(),
     ]);
+
+    
 
 
 
