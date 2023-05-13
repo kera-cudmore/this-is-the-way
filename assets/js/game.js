@@ -146,6 +146,7 @@ const grogu = add([
     // Update the visual representation of the health bar
     healthBar.width = healthBarWidth;
   }
+
   
  
   const jawaPositions = [
@@ -198,16 +199,6 @@ const grogu = add([
     spawnJawaAtPosition(position, distance, speed);
   });
 
-
-  
-  
- 
-  
- 
-
- 
-
-
   grogu.collides('frogs', (f) => {
     destroy(f)
     livesLeft.innerText = ++grogulives;
@@ -244,6 +235,24 @@ const grogu = add([
       pos: grogu.pos.add(grogu.width / 10, grogu.height / 30),
     });
   });
+
+
+
+  function gameOver() {
+    // Clear the game scene
+    destroy(grogu); // Remove the player entity
+  destroy(healthBar);
+  
+    // Display the game over screen
+    add([
+      text("Game Over", 32),
+      pos(width() / 2, height() / 2),
+      origin("center"),
+      layer("ui"),
+    ]);
+  
+    // Additional game over actions can be added here
+  }
 
   //layers
   layers(['bg', 'obj', 'ui'] )
