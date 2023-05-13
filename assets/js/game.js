@@ -56,8 +56,8 @@ function shoot(obj) {
 
 // create game scenes
 scene("game", () => {
-    play("theme", { loop: true });
-    volume(0.1);
+    // play("theme", { loop: true });
+    // volume(0.1);
 
     const mando = add([
         sprite("mando"),
