@@ -37,3 +37,32 @@ h3 {
     margin: 1rem;
     font-size: 2rem;
 }
+
+a {
+    text-decoration: none;
+    margin-right: 1rem;
+}
+
+.btn {
+    font: 2rem 'Space Mono', monospace;
+    border: 2px solid #40342d;
+    background-color: #40342d;
+    border-radius: 10px;
+    border-width: fit-content;
+    padding: 0.5rem;
+    color: whitesmoke;
+    text-shadow: 3px 3px 5px #ef554b;
+    text-align: center;
+    align-self:center;
+    justify-content: end;
+}
+
+.nav__container {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+}
+
+.audio__container {
+    display: flex;
+}
