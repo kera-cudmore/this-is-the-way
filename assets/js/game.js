@@ -31,19 +31,17 @@ loadSound("theme", "sounds/FluffingaDuck.mp3");
 
 
 
-
-
-const mando = add([
-  sprite("mando"),
-  pos(1210, 250),
-  scale(1),
-]);
+// const mando = add([
+//   sprite("mando"),
+//   pos(1210, 250),
+//   scale(1),
+// ]);
 
 
 
 function shoot(obj) {
   const p = add([
-    scale(0.5),
+    scale(0.05),
     sprite(obj.sprite),
     pos(obj.pos),
     origin('center'),
@@ -75,8 +73,9 @@ scene("game", () => {
 
   const mando = add([
     sprite("mando"),
-    pos(1210, 250),
-    scale(1),
+    pos(20, 1510),
+    scale(0.6),
+    area(),
   ]);
 
 
@@ -88,8 +87,10 @@ scene("game", () => {
     area(),
   ]);
 
-
-
+  grogu.collides('frogs', (f) => {
+    destroy(f)
+    livesLeft.innerText = ++playerlives;
+  })
 
 
   const movementSpeed = 100;
@@ -105,12 +106,13 @@ scene("game", () => {
 
   keyDown("left", () => {
     grogu.move(-movementSpeed, 0);
+    grogu.flipX(true);
   });
 
   keyDown("right", () => {
     grogu.move(movementSpeed, 0);
+    grogu.flipX(false);
   });
-
 
 
   keyPress("space", () => {
@@ -118,18 +120,16 @@ scene("game", () => {
       sprite: "force",
       speed: 500,
       angle: grogu.angle,
-      pos: grogu.pos.add(grogu.width / 2, grogu.height / 2),
+      pos: grogu.pos.add(grogu.width / 10, grogu.height / 30),
     });
   });
-
-
 
   //layers
   layers(['bg', 'obj', 'ui'], 'obj')
 
   addLevel([
     "                              ",
-    "                              ",
+    "                         f    ",
     "                              ",
     "                              ",
     "                              ",
@@ -138,7 +138,7 @@ scene("game", () => {
     "                  ==          ",
     "                  ==          ",
     "           =========          ",
-    "           =========    ======",
+    " f         =========    ======",
     "                        ======",
     "                              ",
     "                              ",
@@ -162,7 +162,7 @@ scene("game", () => {
     "                              ",
     "                              ",
     "                     =========",
-    "                     =========",
+    "                f    =========",
     "               ==             ",
     "                              ",
     "                              ",
@@ -183,7 +183,7 @@ scene("game", () => {
     "=======================       ",
     "                              ",
     "                              ",
-    "                        ======",
+    "                   f    ======",
     "                        ======",
     "                              ",
     "         ============         ",
@@ -206,7 +206,7 @@ scene("game", () => {
     "                              ",
     "                              ",
     "                              ",
-    "===========                   ",
+    "===========  f                ",
     "===========                   ",
     "==========================    ",
     "==========================    ",
@@ -217,7 +217,7 @@ scene("game", () => {
     "============         ======   ",
     "============                  ",
     "                              ",
-    "                              ",
+    "   f                          ",
     "                      ========",
     "                      ========",
     "============     ==== ========",
@@ -243,6 +243,16 @@ scene("game", () => {
       layer("obj"),
       fixed(),
     ],
+    "f": () => [
+        sprite("frogs"),
+        'frogs',
+        area(),
+        solid(),
+        scale(0.6),
+        pos(0, 0),
+        layer("obj"),
+        body(),
+      ],
    
   })
 
