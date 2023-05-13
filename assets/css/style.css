@@ -92,3 +92,29 @@ a {
     align-self:center;
     justify-content: end;
 }
+
+footer {
+    display:flex;
+    flex-direction: column;
+    bottom:0;
+    position: absolute;
+    width:100%;
+}
+
+#team-name h3{
+    text-align: center;
+    font: 21px var(--space-font);
+    border: 2px solid var(--brown);
+    background-color: var(--brown);
+    border-radius: 10px;
+    border-width: fit-content;
+    padding: 0.5rem;
+    color: var(--white);
+    text-shadow: 3px 3px 5px var(--orange);
+}
+
+#team-members ul{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
