@@ -22,6 +22,7 @@ kaboom({
 loadRoot("assets/");
 loadSprite("mando", "sprites/Mando1stSprite.png");
 loadSprite("grogu-transit", "sprites/grogu-transit.png");
+loadSprite("jawa", "sprites/Jawa.png");
 loadSprite("ground", "sprites/ground.png");
 loadSprite("force", "sprites/force.png");
 loadSprite("frogs", "sprites/Frog(Points)Sprite.png");
@@ -35,7 +36,6 @@ const mando = add([
   pos(1210, 250),
   scale(1),
 ]);
-
 
 
 
@@ -78,6 +78,32 @@ scene("game", () => {
   ]);
 
 
+  const spawnPositions = [
+    vec2(100, 100),
+    vec2(200, 200),
+    vec2(300, 300),
+    // Add more spawn positions as needed
+  ];
+  
+  function spawnEnemyAtPosition(position) {
+    const jawa= add([
+        sprite("jawa"),
+        pos(position.x,position.y),
+        scale(0.5),
+        body(),
+        area(),
+    ]);
+    
+    jawa.action(()=>{
+        jawa.move(0,0);
+    });
+  }
+  
+  // Spawn enemies at fixed positions
+  spawnPositions.forEach((position) => {
+    spawnEnemyAtPosition(position);
+  });
+  
 
   const grogu = add([
     sprite("grogu-transit"),
