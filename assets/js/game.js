@@ -106,10 +106,12 @@ scene("game", () => {
 
   keyDown("left", () => {
     grogu.move(-movementSpeed, 0);
+    grogu.flipX(true);
   });
 
   keyDown("right", () => {
     grogu.move(movementSpeed, 0);
+    grogu.flipX(false);
   });
 
 
