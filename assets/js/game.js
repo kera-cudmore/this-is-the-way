@@ -31,11 +31,11 @@ loadSound("theme", "sounds/FluffingaDuck.mp3");
 // Level Sprites
 
 
-const mando = add([
-  sprite("mando"),
-  pos(1210, 250),
-  scale(1),
-]);
+// const mando = add([
+//   sprite("mando"),
+//   pos(1210, 250),
+//   scale(1),
+// ]);
 
 
 
@@ -73,8 +73,9 @@ scene("game", () => {
 
   const mando = add([
     sprite("mando"),
-    pos(1210, 250),
-    scale(1),
+    pos(20, 1510),
+    scale(0.6),
+    area(),
   ]);
 
 
