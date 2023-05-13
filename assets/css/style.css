@@ -56,7 +56,7 @@ body {
 }
 
 #game{
-    background-image: url(/assets/sprites/sandcrawler-lvl.png);
+    background-image: url(/assets/sprites/levelsandcrawler.png);
     background-size: cover;
     padding-left: 0;
     padding-right: 0;
