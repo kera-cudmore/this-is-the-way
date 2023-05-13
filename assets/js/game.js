@@ -21,6 +21,17 @@ loadSprite("ground", "sprites/ground.png");
 loadSprite("force", "sprites/force.png");
 loadSound("theme", "sounds/FluffingaDuck.mp3");
 
+// Level Sprites
+
+loadSprite("tile1", "sprites/slicedtiles/slicedtiles1.png");
+loadSprite("tile2", "sprites/slicedtiles/slicedtiles2.png");
+loadSprite("tile3", "sprites/slicedtiles/slicedtiles3.png");
+loadSprite("tile4", "sprites/slicedtiles/slicedtiles4.png");
+loadSprite("tile5", "sprites/slicedtiles/slicedtiles5.png");
+loadSprite("tile6", "sprites/slicedtiles/slicedtiles6.png");
+loadSprite("tile7", "sprites/slicedtiles/slicedtiles7.png");
+loadSprite("tile8", "sprites/slicedtiles/slicedtiles8.png");
+
 
 
 const mando = add([
@@ -78,13 +89,6 @@ scene("game", () => {
     ]);
 
 
-  const grogu = add([
-    sprite("grogu-transit"),
-    pos(0, 0),
-    scale(0.05),
-    body(),
-    area(),
-  ]);
 
   const movementSpeed = 100;
 
@@ -250,7 +254,6 @@ scene("game", () => {
   add([sprite, layer("obj")]);
 
 
-})
 
 // start game
 go("game")
