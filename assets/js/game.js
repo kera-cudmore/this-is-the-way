@@ -128,6 +128,7 @@ scene("game", () => {
   grogu.collides('frogs', (f) => {
     destroy(f)
     livesLeft.innerText = ++playerlives;
+    score.innerText = ++playerscore;
   })
 
 
