@@ -1,6 +1,6 @@
 body {
   margin:0;
-  overflow: hidden;
+  /* overflow: hidden; */
   font-family: 'Space Mono', monospace;
   background-color: #a6695b;
   width: 100%;
@@ -38,6 +38,7 @@ h3 {
     font-size: 2rem;
 }
 
+
 a {
     text-decoration: none;
     margin-right: 1rem;
@@ -66,3 +67,9 @@ a {
 .audio__container {
     display: flex;
 }
+
+#game{
+    background-image: url(/assets/sprites/sandcrawler-lvl.png);
+    background-size: cover;
+}
+
