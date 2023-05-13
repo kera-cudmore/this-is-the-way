@@ -29,6 +29,20 @@ loadSprite("frogs", "sprites/Frog(Points)Sprite.png");
 loadSound("theme", "sounds/FluffingaDuck.mp3");
 
 
+function moveBackAndForth(jawa, distance, speed) {
+    const initialPos = jawa.pos.x;
+
+    jawa.action(() => {
+        const currentPosition = jawa.pos.x - initialPos; // Calculate the current position relative to the initial position
+
+        if (currentPosition >= distance || currentPosition <= 0) {
+            speed *= -1; // Reverse the speed to change direction
+          }
+      
+          // Move the enemy in the current direction
+          jawa.move(speed, 0);
+        });
+      }
 
 
 // const mando = add([
@@ -78,6 +92,47 @@ scene("game", () => {
     area(),
   ]);
 
+
+  const jawaPositions = [
+    vec2(20, 100),
+    vec2(100, 300),
+    vec2(20, 600),
+    vec2(100, 400),
+    vec2(40, 700),
+    vec2(140, 900),
+    vec2(200, 1200),
+    // Add more spawn positions as needed
+  ];
+  const jawasConfigurations = [
+    { distance: 250, speed: 70 },
+    { distance: 250, speed: 70 },
+    { distance: 150, speed: 70 },
+    { distance: 200, speed: 70 },
+    { distance: 200, speed: 70 },
+    { distance: 150, speed: 70 },
+    { distance: 200, speed: 70 },
+    // Add more spawn positions as needed
+  ];
+  
+  function spawnJawaAtPosition(position,distance,speed) {
+    const jawa= add([
+        sprite("jawa"),
+        pos(position.x,position.y),
+        scale(0.5),
+        body(),
+        area(),
+    ]);
+    moveBackAndForth(jawa,distance,speed);
+  }
+  
+  // Spawn enemies at fixed positions
+  jawaPositions.forEach((position,index) => {
+    const configuration = jawasConfigurations[index];
+    const distance = configuration.distance; // Use the distance value from the configuration
+    const speed = configuration.speed;
+    spawnJawaAtPosition(position,distance,speed);
+  });
+  
 
   const grogu = add([
     sprite("grogu-transit"),
@@ -246,12 +301,9 @@ scene("game", () => {
     "f": () => [
         sprite("frogs"),
         'frogs',
-        area(),
-        solid(),
         scale(0.6),
         pos(0, 0),
         layer("obj"),
-        body(),
       ],
    
   })
