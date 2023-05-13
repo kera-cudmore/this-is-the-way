@@ -1,6 +1,6 @@
 body {
   margin:0;
-  overflow: hidden;
+  /* overflow: hidden; */
   font-family: 'Space Mono', monospace;
   background-color: #a6695b;
   width: 100%;
@@ -36,4 +36,8 @@ h3 {
 .score-container p {
     margin: 1rem;
     font-size: 2rem;
+}
+#game{
+    background-image: url(/assets/sprites/sandcrawler-lvl.png);
+    background-size: cover;
 }
