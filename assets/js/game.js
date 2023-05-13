@@ -1,8 +1,8 @@
 const score = document.getElementById('your-score');
 const livesLeft = document.getElementById('lives-remaining');
 
-let playerscore = 0;
-let playerlives = 0;
+let groguscore = 0;
+let grogulives = 0;
 
 // initialize kaboom context
 kaboom({
@@ -88,17 +88,66 @@ scene("game", () => {
   // play("theme", { loop: true });
   // volume(0.1);
 
-  score.innerText = playerscore;
-  livesLeft.innerText = playerlives;
+  score.innerText = groguscore;
+  livesLeft.innerText = grogulives;
 
+ // Create the health bar entity
+  const healthBar = add([
+    rect(300, 20),
+    pos(10, 10),
+    layer("ui"),
+    color(239, 85, 75),
+    {
+      width: 100,
+      height: 10,
+    },
+  ]);
   const mando = add([
     sprite("mando"),
     pos(20, 1510),
     scale(0.6),
     area(),
-  ]);
+]);
+const groguMaxHealth = 100;
+  let groguHealth = groguMaxHealth;
+const grogu = add([
+  sprite("grogu-transit"),
+  pos(20, 0),
+  layer("obj"),
+  scale(0.1),
+  body(),
+  area(),
+  solid(),
+  "grogu",
+  {
+    groguHealth,
+    groguMaxHealth,
+  },
+]);
 
 
+ // Function to decrease grogu's health
+ function decreasegroguHealth(damage) {
+    groguHealth -= damage;
+    updateHealthBar();
+    if (groguHealth <= 0) {
+      // grogu is defeated, game over logic here
+      gameOver();
+    }
+  
+    // Update the health bar
+  }
+
+   // Function to update the health bar
+   function updateHealthBar() {
+    // Calculate the width of the health bar based on the grogu's health
+    const healthBarWidth = (groguHealth / groguMaxHealth) * 100;
+  
+    // Update the visual representation of the health bar
+    healthBar.width = healthBarWidth;
+  }
+  
+ 
   const jawaPositions = [
     vec2(20, 100),
     vec2(100, 300),
@@ -124,12 +173,22 @@ scene("game", () => {
     const jawa = add([
       sprite("jawa"),
       pos(position.x, position.y),
+      layer("obj"),
       scale(0.5),
       body(),
       area(),
+      {
+        damage:10,
+      },
+      "jawa",
+      solid(),
     ]);
     moveBackAndForth(jawa, distance, speed);
-  }
+    grogu.collides("jawa", () => {
+        decreasegroguHealth(jawa.damage);
+    });
+    
+};
 
   // Spawn enemies at fixed positions
   jawaPositions.forEach((position, index) => {
@@ -140,17 +199,18 @@ scene("game", () => {
   });
 
 
-  const grogu = add([
-    sprite("grogu-transit"),
-    pos(20, 0),
-    scale(0.05),
-    body(),
-    area(),
-  ]);
+  
+  
+ 
+  
+ 
+
+ 
+
 
   grogu.collides('frogs', (f) => {
     destroy(f)
-    livesLeft.innerText = ++playerlives;
+    livesLeft.innerText = ++grogulives;
   })
 
 
@@ -186,7 +246,7 @@ scene("game", () => {
   });
 
   //layers
-  layers(['bg', 'obj', 'ui'], 'obj')
+  layers(['bg', 'obj', 'ui'] )
 
   addLevel([
     "                              ",
@@ -286,7 +346,7 @@ scene("game", () => {
     "                             =",
     "                             =",
     "                             =",
-    "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$",
+    "==============================",
     "==============================",
     "==============================",
 
@@ -315,6 +375,7 @@ scene("game", () => {
   })
 
   add([sprite, layer("obj")]);
+  add([sprite, layer("ui")]);
 
 });
 // start game
