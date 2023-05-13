@@ -39,14 +39,22 @@
 <body>
 
 
-<nav>
-    <h1>This Is The Way</h1>
+<nav class="nav__container">
     <div class="score-container">
         <p>Score: <span id="your-score"></span></p>
         <p>Lives: <span id="question-remaining"></span></p> 
     </div>
+
+  <!-- AUDIO BUTTON-->
+  <div class="audio__container">
+    <a href="#" id="audioControl" class="btn">Play Music!</a>
+    <audio id="yourAudio" preload='none'>
+      <source src='assets/sounds/theme.mp3' type='audio/mpeg' />
+    </audio>
+  </div>
+
 </nav>
-=======
+
     <nav>
         <div id="game-logo">
             <a href="https://fontmeme.com/the-mandalorian-font/"><img src="https://fontmeme.com/permalink/230512/6a941263a2465b982bbb1fe1a4ddb4b7.png" alt="the-mandalorian-font"></a>
@@ -79,6 +87,7 @@
 
     <!-- Game JS File-->
     <script src="assets/js/game.js"></script>
+    <script src="assets/js/music.js"></script>
     <script src="assets/js/ee.js"></script>
 
     <!-- font awesome script -->
