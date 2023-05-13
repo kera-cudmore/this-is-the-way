@@ -3,7 +3,7 @@
     /* Typography Variables */
     --mandolore: 'Mandalore', monospace;
     --space-font: 'Space Mono', monospace;
-    
+
     /* Colour Variables */
     --white: #F5F5F5;
     --orange: #ef554b;
@@ -19,23 +19,31 @@
 
 /*----- Containers -----*/
 body {
-    margin:0;
+    margin: 0;
     /* overflow: hidden; */
     font-family: var(--space-font);
-    background-color:var(--camel);
+    background-color: var(--camel);
     width: 100%;
 }
 
 .nav__container {
     display: flex;
     flex-direction: row;
-    justify-content:space-between;
+    justify-content: space-between;
 }
 
 .score-container {
     display: flex;
     flex-direction: row;
 
+}
+
+.score-container p {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.audio__container .btn {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .audio__container {
@@ -55,7 +63,7 @@ body {
     background-color: var(--camel);
 }
 
-#game{
+#game {
     background-image: url(/assets/sprites/levelsandcrawler.png);
     background-size: cover;
     padding-left: 0;
@@ -70,13 +78,13 @@ h1 {
     font-family: var(--mandolore);
     font-weight: normal;
     font-style: normal;
-    color:var(--purple);
+    color: var(--purple);
     margin: .5rem;
     text-align: center;
     font-size: 2rem;
     text-shadow: calc(-5px * -1) calc(-5px * -1) 0px var(--black);
     -webkit-text-stroke: 2px var(--black);
-    
+
 }
 
 
@@ -84,7 +92,7 @@ h2 {
     font-family: var(--space-font);
     font-weight: normal;
     font-style: normal;
-    color:var(--black);
+    color: var(--black);
     margin: 0;
     font-size: 1rem;
 }
@@ -98,10 +106,11 @@ p {
     border: 2px solid var(--brown);
     background-color: var(--brown);
     border-radius: 10px;
-    border-width: fit-content;
     padding: 0.5rem;
     color: var(--white);
     text-shadow: 3px 3px 5px var(--orange);
+    text-align: center;
+    margin: 0 auto 20px auto;
 }
 
 .score-container p {
@@ -125,7 +134,7 @@ a {
     color: whitesmoke;
     text-shadow: 3px 3px 5px var(--orange);
     text-align: center;
-    align-self:center;
+    align-self: center;
     justify-content: end;
 }
 
@@ -134,13 +143,13 @@ img {
 }
 
 footer {
-    display:flex;
+    display: flex;
     flex-direction: column;
-    bottom:0;
-    width:100%;
+    bottom: 0;
+    width: 100%;
 }
 
-#team-name h3{
+#team-name h3 {
     text-align: center;
     font: 21px var(--space-font);
     border: 2px solid var(--brown);
@@ -152,10 +161,11 @@ footer {
     text-shadow: 3px 3px 5px var(--orange);
 }
 
-#team-members ul{
-    display:flex;
+#team-members ul {
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
+    list-style: none;
 }
 
 i {
@@ -185,7 +195,7 @@ i {
     }
 }
 
-  /* Laptops */
+/* Laptops */
 @media only screen and (min-width : 769px) {
 
 
@@ -195,9 +205,11 @@ i {
 
     img {
         height: 800px;
-    };
+    }
+
+    ;
 
     h2 {
         font-size: 2rem;
-    }    
+    }
 }
