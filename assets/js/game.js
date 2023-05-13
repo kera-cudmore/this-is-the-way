@@ -28,7 +28,21 @@ loadSprite("force", "sprites/force.png");
 loadSprite("frogs", "sprites/Frog(Points)Sprite.png");
 loadSound("theme", "sounds/FluffingaDuck.mp3");
 
-// Level Sprites
+
+function moveBackAndForth(jawa, distance, speed) {
+    const initialPos = jawa.pos.x;
+
+    jawa.action(() => {
+        const currentPosition = jawa.pos.x - initialPos; // Calculate the current position relative to the initial position
+
+        if (currentPosition >= distance || currentPosition <= 0) {
+            speed *= -1; // Reverse the speed to change direction
+          }
+      
+          // Move the enemy in the current direction
+          jawa.move(speed, 0);
+        });
+      }
 
 
 
@@ -80,14 +94,14 @@ scene("game", () => {
   ]);
 
 
-  const spawnPositions = [
+  const jawaPositions = [
     vec2(100, 100),
     vec2(200, 200),
     vec2(300, 300),
     // Add more spawn positions as needed
   ];
   
-  function spawnEnemyAtPosition(position) {
+  function spawnJawaAtPosition(position) {
     const jawa= add([
         sprite("jawa"),
         pos(position.x,position.y),
@@ -95,15 +109,12 @@ scene("game", () => {
         body(),
         area(),
     ]);
-    
-    jawa.action(()=>{
-        jawa.move(0,0);
-    });
+    moveBackAndForth(jawa,200,50);
   }
   
   // Spawn enemies at fixed positions
-  spawnPositions.forEach((position) => {
-    spawnEnemyAtPosition(position);
+  jawaPositions.forEach((position) => {
+    spawnJawaAtPosition(position);
   });
   
 
