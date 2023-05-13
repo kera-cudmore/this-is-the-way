@@ -104,10 +104,15 @@ scene("game", () => {
   ]);
   const mando = add([
     sprite("mando"),
-    pos(20, 1510),
+    pos(20, 1520),
     scale(0.6),
     area(),
+    body(),
+    solid(),
+    "mando",
 ]);
+
+ let jawas=[];
 const groguMaxHealth = 100;
   let groguHealth = groguMaxHealth;
 const grogu = add([
@@ -171,7 +176,7 @@ const grogu = add([
   ];
 
   function spawnJawaAtPosition(position, distance, speed) {
-    const jawa = add([
+   const jawa = add([
       sprite("jawa"),
       pos(position.x, position.y),
       layer("obj"),
@@ -179,7 +184,7 @@ const grogu = add([
       body(),
       area(),
       {
-        damage:10,
+        damage:1,
       },
       "jawa",
       solid(),
@@ -188,8 +193,16 @@ const grogu = add([
     grogu.collides("jawa", () => {
         decreasegroguHealth(jawa.damage);
     });
-    
+    jawas.push(jawa);
+    return jawa;
 };
+function destroyJawas() {
+    for (const jawa of jawas) {
+      destroy (jawa); // Remove the enemy from the game
+    }
+  
+    jawas = []; // Clear the enemies array
+  }
 
   // Spawn enemies at fixed positions
   jawaPositions.forEach((position, index) => {
@@ -236,14 +249,33 @@ const grogu = add([
     });
   });
 
-
+  function gameWin() {
+    // Clear the game scene
+    destroyJawas();
+    destroy(grogu); 
+    destroy(healthBar); 
+    add([
+      text("You Win!", 32),
+      pos(width() / 2, height() / 2),
+      origin("center"),
+      layer("ui"),
+    ]);
+  
+  }
+  
+  function checkCollisionWithMando() {
+    grogu.collides("mando", () => {
+      gameWin();
+    });
+  }
+  grogu.action(checkCollisionWithMando);
 
   function gameOver() {
-    // Clear the game scene
-    destroy(grogu); // Remove the player entity
+    destroyJawas();
+    destroy(grogu); 
   destroy(healthBar);
   
-    // Display the game over screen
+    
     add([
       text("Game Over", 32),
       pos(width() / 2, height() / 2),
