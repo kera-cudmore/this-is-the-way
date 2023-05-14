@@ -42,42 +42,61 @@
 
 <body>
 
-  
 
-  <!-- Site Banner -->
-  <h1>THIS IS THE WAY</h1>
-  <p>Help Grogu find his way back to the Madalorian!</p>
 
-  <!-- Nav -->
-  <nav class="nav__container">
-      <div class="score-container">
-          <p>Score: <span id="your-score"></span></p>
-          <p>Lives: <span id="lives-remaining"></span></p>
-      </div>
+    <!-- Site Banner -->
+    <h1>THIS IS THE WAY</h1>
+    <p>Help Grogu find his way back to the Madalorian!</p>
 
-      <!-- AUDIO BUTTON-->
-      <div class="audio__container">
-          <a href="#" id="audioControl" class="btn">Play Music!</a>
-          <audio id="yourAudio" preload='none'>
-              <source src='assets/sounds/theme.mp3' type='audio/mpeg'>
-          </audio>
-      </div>
-  </nav>
-  <!--Start Page-->
-  <div id="start-game">
-    <div id="description">
-        <h1>THIS IS THE WAY
-        </h1>
+    <!-- Nav -->
+    <nav class="nav__container">
+        <div class="score-container">
+            <p>Score: <span id="your-score"></span></p>
+            <p>Lives: <span id="lives-remaining"></span></p>
+        </div>
+
+        <!-- AUDIO BUTTON-->
+        <div class="audio__container">
+            <a href="#" id="audioControl" class="btn">Play Music!</a>
+            <audio id="yourAudio" preload='none'>
+                <source src='assets/sounds/theme.mp3' type='audio/mpeg'>
+            </audio>
+        </div>
+        <div class="reset__container">
+            <button id="reset-button" class="btn">Reset Game</button>
+        </div>
+    </nav>
+    <!--Start Page-->
+    <div id="start-game">
+        <div id="description">
+            <h1>THIS IS THE WAY
+            </h1>
+        </div>
+        <div>
+            <button class="btn" id="instructions-btn">
+                How to play
+            </button>
+        </div>
+        <div id="button-container">
+            <button class="btn" id="play-button">
+                Play Game!
+            </button>
+        </div>
     </div>
-    <div>
-        <button class ="btn">
-            How to play
-        </button>
-    </div>
-    <div id="button-container">
-        <button class = "btn" id="play-button">
-            Play Game!
-        </button>
+    <!--Instructions Page-->
+    <div id="how-to-play">
+        <h1>How to Play</h1>
+        <div id="how-to-play-info">
+            <p>Start the game by pressing the Play game button on the start screen.</p>
+            <p>Use the left and right arrow keys on your keyboard to move Grogu left and right. </p>
+            <p>Use the up arrow key to make Mario jump. You can jump on top of enemies/Jawa to defeat them or jump over obstacles.</p>
+            <p>Collect frogs by eating them. Each frog gives you 1 life.</p>
+            <p>Grogu must kill the Jawas to gain points.</p>
+            <p>If grogu's health declines to 0%, then grogu dies.</p>
+            <p>Get through all the levels so that grogu can get to Mandolorian.</p>
+            <p>You win if you get to Mandolorian without being killed!</p>
+        </div>
+        <button class="btn" id="go-back"> Go Back </button>
     </div>
   </div>
 
@@ -180,19 +199,20 @@
                 </ul>
             </div>
         </div>
-
     </footer>
 
-  <!-- KaboomJS Script -->
-  <script src="https://unpkg.com/kaboom/dist/kaboom.js"></script>
 
-  <!-- Game JS Files -->
-  <script src="assets/js/game.js"></script>
-  <script src="assets/js/music.js"></script>
-  <script src="assets/js/ee.js"></script>
+    <!-- KaboomJS Script -->
+    <script src="https://unpkg.com/kaboom/dist/kaboom.js"></script>
 
-  <!-- font awesome script -->
-  <script src="https://kit.fontawesome.com/f916b749a1.js" crossorigin="anonymous"></script>
+    <!-- Game JS Files -->
+    <script src="assets/js/game.js"></script>
+    <script src="assets/js/music.js"></script>
+    <script src="assets/js/ee.js"></script>
+
+    <!-- font awesome script -->
+    <script src="https://kit.fontawesome.com/f916b749a1.js" crossorigin="anonymous"></script>
+
 </body>
 
 </html>

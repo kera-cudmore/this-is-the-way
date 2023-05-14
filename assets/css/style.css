@@ -40,6 +40,14 @@ body {
 
 }
 
+.reset__container{
+    display: flex;
+}
+
+#reset-button{
+    cursor: pointer;
+}
+
 .score-container p {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -50,6 +58,7 @@ body {
 
 .audio__container {
     display: flex;
+    margin-left: 23%;
 }
 
 .page__container {
@@ -73,9 +82,11 @@ body {
     margin-left: auto;
     margin-right: auto;
     display:block;
+    border-radius: 3px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 /** Start game page **/
-#start-game {
+#start-game  {
     border: 2px solid var(--brown);
     background: url(../images/game-000.webp) center center /cover no-repeat;
     margin: 1rem auto;
@@ -93,17 +104,26 @@ body {
     justify-content: space-evenly;
     z-index: 2;
 }
-
-#description h1{
-    font-size: 8rem;
-    text-shadow: none;
-    color:var(--white)
-
+/**Instructions div**/
+#how-to-play{
+    background: url(../images/game-000.webp) center center /cover no-repeat;
+    margin: 1rem auto;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 2rem;
+    position: fixed;
+    top: 50%;
+    width:80%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    display: none;
 }
-#start-game .btn:hover{
-    box-shadow:0 4px 8px 0 #ef554b, 0 6px 20px 0 #ef554b ;
-    cursor: pointer;
-}
+
+
+
 
 /*----- Text -----*/
 h1 {
@@ -154,7 +174,22 @@ a {
     text-decoration: none;
     margin-right: 1rem;
 }
-
+#how-to-play h1{
+    font-size: 4rem;
+    text-shadow: none;
+    color:var(--white)
+}
+#how-to-play p{
+    font-size: 1.5rem;
+    background-color: transparent;
+    border: none;
+    padding: 0rem;
+}
+#description h1{
+    font-size: 8rem;
+    text-shadow: none;
+    color:var(--white)
+}
 /* music button */
 .btn {
     font: 2rem var(--space-font);
@@ -169,6 +204,12 @@ a {
     align-self: center;
     justify-content: end;
 }
+/**Buttons**/
+#start-game .btn:hover , #how-to-play .btn:hover{
+    box-shadow:0 4px 8px 0 #ef554b, 0 6px 20px 0 #ef554b ;
+    cursor: pointer;
+}
+
 
 img {
     height: 150px;
