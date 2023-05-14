@@ -32,9 +32,10 @@ body {
     justify-content: space-between;
     position:fixed;
     width:100%;
+    
 }
 
-.score-container {
+.score-container, .controls__container {
     display: flex;
     flex-direction: row;
 
@@ -58,7 +59,7 @@ body {
 
 .audio__container {
     display: flex;
-    margin-left: 23%;
+    /**margin-left: 23%;**/
 }
 
 .page__container {
@@ -170,6 +171,10 @@ p {
     font-size: 2rem;
 }
 
+.reset__container {
+    margin-right:1rem;
+}
+
 a {
     text-decoration: none;
     margin-right: 1rem;
@@ -205,7 +210,7 @@ a {
     justify-content: end;
 }
 /**Buttons**/
-#start-game .btn:hover , #how-to-play .btn:hover{
+.btn:hover{
     box-shadow:0 4px 8px 0 #ef554b, 0 6px 20px 0 #ef554b ;
     cursor: pointer;
 }

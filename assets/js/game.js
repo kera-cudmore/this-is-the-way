@@ -481,7 +481,7 @@ scene("game", () => {
       'frogs',
       area(),
       solid(),
-      scale(0.8),
+      scale(0.5),
       pos(0, 0),
       layer("obj"),
       body(),
