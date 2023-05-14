@@ -1,10 +1,15 @@
 const score = document.getElementById('your-score');
 const livesLeft = document.getElementById('lives-remaining');
-
+const startPage = document.getElementById('start-game');
+const playButton = document.getElementById('play-button');
 let groguscore = 0;
 let grogulives = 0;
 
+playButton.addEventListener('click', hideStartScreen)
 // initialize kaboom context
+function hideStartScreen(){
+    startPage.style.display = "none";
+}
 kaboom({
 
     global: true,
@@ -132,6 +137,10 @@ scene("game", () => {
       groguMaxHealth,
     },
   ]);
+
+  
+
+
 
 
   // Function to decrease grogu's health
