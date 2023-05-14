@@ -2,14 +2,31 @@ const score = document.getElementById('your-score');
 const livesLeft = document.getElementById('lives-remaining');
 const startPage = document.getElementById('start-game');
 const playButton = document.getElementById('play-button');
+const howtoPlayPage = document.getElementById('how-to-play');
+const instructionsButton = document.getElementById('instructions-btn');
+const goBackButton = document.getElementById('go-back');
 let groguscore = 0;
 let grogulives = 0;
 
+//Event listeners for buttons
 playButton.addEventListener('click', hideStartScreen)
-// initialize kaboom context
+instructionsButton.addEventListener('click',showInstructions)
+goBackButton.addEventListener('click', showStartScreen)
+
+//Functions to display and hide pages.
 function hideStartScreen(){
     startPage.style.display = "none";
 }
+function showInstructions(){
+    howtoPlayPage.style.display = "flex";
+    startPage.style.display = "none";
+}
+function showStartScreen(){
+    startPage.style.display = "flex";
+    howtoPlayPage.style.display = "none";
+}
+
+// initialize kaboom context
 kaboom({
 
     global: true,
