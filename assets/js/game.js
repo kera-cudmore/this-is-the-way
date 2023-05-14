@@ -7,14 +7,14 @@ let grogulives = 0;
 // initialize kaboom context
 kaboom({
 
-  global: true,
-  //   fullscreen: true,
-  width: 480,
-  height: 1600,
-  canvas: document.querySelector("#game"),
-  scale: 2,
-  debug: true,
-  background: [0, 0, 0, 0],
+    global: true,
+    //   fullscreen: true,
+    width: 480,
+    height: 1600,
+    canvas: document.querySelector("#game"),
+    scale: 2,
+    debug: true,
+    background: [0, 0, 0, 0],
 })
 
 
@@ -25,7 +25,8 @@ loadSprite("grogu-transit", "sprites/grogu-transit.png");
 loadSprite("jawa", "sprites/Jawa.png");
 loadSprite("ground", "sprites/ground.png");
 loadSprite("force", "sprites/force.png");
-loadSprite("frogs", "sprites/Frog(Points)Sprite.png");
+loadSprite("frogs", "sprites/Frog.png");
+loadSprite("brick", "sprites/decor.png")
 loadSound("theme", "sounds/FluffingaDuck.mp3");
 
 
@@ -60,31 +61,32 @@ function moveBackAndForth(jawa, distance, speed) {
 
 
 function shoot(obj) {
-  const p = add([
-    scale(0.05),
-    sprite(obj.sprite),
-    pos(obj.pos),
-    origin('center'),
-    lifespan(1.5),
-    'projectile'
-  ]);
+    const p = add([
+        scale(0.05),
+        sprite(obj.sprite),
+        pos(obj.pos),
+        origin('center'),
+        lifespan(1.5),
+        'projectile'
+    ]);
 
-  const speed = obj.speed ?? 600;
-  const angle = obj.angle ?? 0;
-  const vx = speed * Math.cos(angle);
-  const vy = speed * Math.sin(angle);
+    const speed = obj.speed ?? 600;
+    const angle = obj.angle ?? 0;
+    const vx = speed * Math.cos(angle);
+    const vy = speed * Math.sin(angle);
 
-  p.action(() => {
-    p.move(vx * dt(), vy * dt());
-  });
+    p.action(() => {
+        p.move(vx * dt(), vy * dt());
+    });
 
-  return p;
+    return p;
 }
 
 
 
 // create game scenes
 scene("game", () => {
+
   // play("theme", { loop: true });
   // volume(0.1);
 
@@ -211,6 +213,15 @@ function destroyJawas() {
     const speed = configuration.speed;
     spawnJawaAtPosition(position, distance, speed);
   });
+  
+  action("frogs", (f) => {
+        f.move(0, -10);
+        f.action(() => {
+          if (f.grounded()) {
+            f.jump(10);
+          }
+        });
+    });
 
   grogu.collides('frogs', (f) => {
     destroy(f)
@@ -292,7 +303,7 @@ function destroyJawas() {
   addLevel([
     "                              ",
     "                         f    ",
-    "                              ",
+    "                         #    ",
     "                              ",
     "                              ",
     "=============     ============",
@@ -301,7 +312,7 @@ function destroyJawas() {
     "                  ==          ",
     "           =========          ",
     " f         =========    ======",
-    "                        ======",
+    " #                      ======",
     "                              ",
     "                              ",
     "                              ",
@@ -322,9 +333,9 @@ function destroyJawas() {
     "=====================         ",
     "                              ",
     "                              ",
-    "                              ",
+    "       f                      ",
+    "       #             =========",
     "                     =========",
-    "                f    =========",
     "               ==             ",
     "                              ",
     "                              ",
@@ -344,8 +355,8 @@ function destroyJawas() {
     "=======================       ",
     "=======================       ",
     "                              ",
-    "                              ",
-    "                   f    ======",
+    "          f                   ",
+    "          #             ======",
     "                        ======",
     "                              ",
     "         ============         ",
@@ -364,11 +375,11 @@ function destroyJawas() {
     "            ==================",
     "            ==================",
     "        ==                    ",
+    "                   f          ",
+    "                   #          ",
     "                              ",
     "                              ",
-    "                              ",
-    "                              ",
-    "===========  f                ",
+    "===========                   ",
     "===========                   ",
     "==========================    ",
     "==========================    ",
@@ -379,8 +390,8 @@ function destroyJawas() {
     "============         ======   ",
     "============                  ",
     "                              ",
-    "   f                          ",
-    "                      ========",
+    "        f                     ",
+    "        #             ========",
     "                      ========",
     "============     ==== ========",
     "============     ==== ========",
@@ -408,15 +419,29 @@ function destroyJawas() {
     "f": () => [
       sprite("frogs"),
       'frogs',
-      scale(0.6),
-      pos(0, 0),
-      layer("obj"),
+       area(),
+       solid(),
+       scale(0.4),
+       pos(0, 0),
+       layer("obj"),
+       body(),
     ],
+    "#": () => [
+       sprite("brick"),
+       area(),
+       solid(),
+       scale(1),
+       pos(0, 0),
+       layer("obj"),
+       fixed(),
+    ],
+    
 
   })
 
   add([sprite, layer("obj")]);
   add([sprite, layer("ui")]);
+
 
 });
 // start game
