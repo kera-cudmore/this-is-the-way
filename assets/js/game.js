@@ -28,14 +28,15 @@ function showStartScreen() {
 
 // initialize kaboom context
 kaboom({
-    global: true,
-      fullscreen: true,
-    width: 480,
-    height: 1600,
-    canvas: document.querySelector("#game"),
-    scale: 1,
-    debug: true,
-    background: [0, 0, 0, 0],
+
+  global: true,
+  //   fullscreen: true,
+  width: 480,
+  height: 1600,
+  canvas: document.querySelector("#game"),
+  scale: 2,
+  debug: true,
+  background: [0, 0, 0, 0],
 })
 
 let isJumping = true;
@@ -49,7 +50,6 @@ loadSprite("ground", "sprites/ground.png");
 loadSprite("force", "sprites/force.png");
 loadSprite("frogs", "sprites/Frog.png");
 loadSprite("brick", "sprites/decor.png")
-loadSprite("background", "sprites/levelsandcrawler.png");
 loadSound("theme", "sounds/FluffingaDuck.mp3");
 
 
@@ -73,6 +73,15 @@ function moveBackAndForth(jawa, distance, speed) {
     jawa.move(speed, 0);
   });
 }
+
+
+// const mando = add([
+//   sprite("mando"),
+//   pos(1210, 250),
+//   scale(1),
+// ]);
+
+
 
 function shoot(obj) {
   const p = add([
@@ -107,7 +116,7 @@ scene("game", () => {
   score.innerText = groguscore;
   livesLeft.innerText = grogulives;
 
-  // VARIABLES
+  // Create the health bar entity
   const healthBar = add([
     rect(200, 15),
     pos(10, 10),
@@ -127,7 +136,7 @@ scene("game", () => {
     solid(),
     "mando",
   ]);
-  const movementSpeed = 100;
+
   let jawas = [];
   const groguMaxHealth = 100;
   let groguHealth = groguMaxHealth;
@@ -146,16 +155,33 @@ scene("game", () => {
     },
   ]);
 
-// CAMERA
-// const camera = add([
-//     camPos(240,400),
-//     camScale(width()/480),
-//   ]);
-//   camera.camPos = vec2(0, 0); // Set the camera position to (0, 0)
-// camera.camScale = width() / 480; // Adjust the camera scale to fit the canvass
-grogu.onUpdate(() => {
-    camPos(grogu.pos)
-})
+
+
+
+
+
+  // Function to decrease grogu's health
+  function decreasegroguHealth(damage) {
+    groguHealth -= damage;
+    updateHealthBar();
+    if (groguHealth <= 0) {
+      // grogu is defeated, game over logic here
+      gameOver();
+    }
+
+    // Update the health bar
+  }
+
+  // Function to update the health bar
+  function updateHealthBar() {
+    // Calculate the width of the health bar based on the grogu's health
+    const healthBarWidth = (groguHealth / groguMaxHealth) * 100;
+
+    // Update the visual representation of the health bar
+    healthBar.width = healthBarWidth;
+  }
+
+
 
   const jawaPositions = [
     vec2(20, 100),
@@ -177,66 +203,6 @@ grogu.onUpdate(() => {
     { distance: 200, speed: 70 },
     // Add more spawn positions as needed
   ];
-
-//   FUNCTIONS
-
-
-function gameWin() {
-    // Clear the game scene
-    destroyJawas();
-    destroy(grogu);
-    destroy(healthBar);
-    add([
-      text("You Win!", 32),
-      pos(width() / 2, height() / 2),
-      origin("center"),
-      layer("ui"),
-    ]);
-
-  }
-
-  function checkCollisionWithMando() {
-    grogu.collides("mando", () => {
-      gameWin();
-    });
-  }
-
-function gameOver() {
-    destroyJawas();
-    destroy(grogu);
-    destroy(healthBar);
-
-
-    add([
-      text("Game Over", 32),
-      pos(width() / 2, height() / 2),
-      origin("center"),
-      layer("ui"),
-    ]);
-
-    // Additional game over actions can be added here
-  }
-
-  function decreasegroguHealth(damage) {
-    groguHealth -= damage;
-    updateHealthBar();
-    if (groguHealth <= 0) {
-      // grogu is defeated, game over logic here
-      gameOver();
-    }
-
-    // Update the health bar
-  }
-
-
-  function updateHealthBar() {
-    // Calculate the width of the health bar based on the grogu's health
-    const healthBarWidth = (groguHealth / groguMaxHealth) * 100;
-
-    // Update the visual representation of the health bar
-    healthBar.width = healthBarWidth;
-  }
-
 
   function spawnJawaAtPosition(position, distance, speed) {
     const jawa = add([
@@ -277,6 +243,7 @@ function gameOver() {
     jawas = []; // Clear the enemies array
   }
 
+  // Spawn enemies at fixed positions
   jawaPositions.forEach((position, index) => {
     const configuration = jawasConfigurations[index];
     const distance = configuration.distance; // Use the distance value from the configuration
@@ -299,8 +266,8 @@ function gameOver() {
   })
 
 
-  
-// MOVEMENTS
+  const movementSpeed = 100;
+
 
   keyDown("up", () => {
     if (grogu.grounded())
@@ -359,6 +326,8 @@ function gameOver() {
       layer("ui"),
     ]);
 
+  }
+
   const resetButton = document.querySelector("#reset-button");
   resetButton.addEventListener("click", () => {
     location.reload();
@@ -370,14 +339,27 @@ function gameOver() {
       gameWin();
     });
   }
-
   grogu.action(checkCollisionWithMando);
 
+  function gameOver() {
+    destroyJawas();
+    destroy(grogu);
+    destroy(healthBar);
 
+
+    add([
+      text("Game Over", 32),
+      pos(width() / 2, height() / 2),
+      origin("center"),
+      layer("ui"),
+    ]);
+
+    // Additional game over actions can be added here
+  }
 
   //layers
   layers(['bg', 'obj', 'ui'])
-// LEVEL
+
   addLevel([
     "                              ",
     "                         f    ",
@@ -516,7 +498,7 @@ function gameOver() {
 
 
   })
-  add([sprite("background"), layer("bg")]);
+
   add([sprite, layer("obj")]);
   add([sprite, layer("ui")]);
 
