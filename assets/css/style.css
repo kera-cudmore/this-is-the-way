@@ -236,7 +236,7 @@ footer {
 
 #team-members {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     list-style: none;
     font: 19px #000 'Space Mono', monospace;
@@ -297,10 +297,6 @@ a:hover {
     h2 {
         font-size: 2rem;
     }
-}
-
-/* Footer flex */
-@media only screen and (max-width :1465px) {
 
     #social-links {
         display: flex;
@@ -341,5 +337,4 @@ a:hover {
     #social-links li {
         padding: 0.5rem;
     }
-    
 }
