@@ -17,6 +17,7 @@ kaboom({
   background: [0, 0, 0, 0],
 })
 
+let isJumping = true;
 
 // loads sprite
 loadRoot("assets/");
@@ -91,7 +92,7 @@ scene("game", () => {
   score.innerText = groguscore;
   livesLeft.innerText = grogulives;
 
- // Create the health bar entity
+  // Create the health bar entity
   const healthBar = add([
     rect(300, 20),
     pos(10, 10),
@@ -110,50 +111,50 @@ scene("game", () => {
     body(),
     solid(),
     "mando",
-]);
+  ]);
 
- let jawas=[];
-const groguMaxHealth = 100;
+  let jawas = [];
+  const groguMaxHealth = 100;
   let groguHealth = groguMaxHealth;
-const grogu = add([
-  sprite("grogu-transit"),
-  pos(20, 0),
-  layer("obj"),
-  scale(0.1),
-  body(),
-  area(),
-  solid(),
-  "grogu",
-  {
-    groguHealth,
-    groguMaxHealth,
-  },
-]);
+  const grogu = add([
+    sprite("grogu-transit"),
+    pos(20, 0),
+    layer("obj"),
+    scale(0.1),
+    body(),
+    area(),
+    solid(),
+    "grogu",
+    {
+      groguHealth,
+      groguMaxHealth,
+    },
+  ]);
 
 
- // Function to decrease grogu's health
- function decreasegroguHealth(damage) {
+  // Function to decrease grogu's health
+  function decreasegroguHealth(damage) {
     groguHealth -= damage;
     updateHealthBar();
     if (groguHealth <= 0) {
       // grogu is defeated, game over logic here
       gameOver();
     }
-  
+
     // Update the health bar
   }
 
-   // Function to update the health bar
-   function updateHealthBar() {
+  // Function to update the health bar
+  function updateHealthBar() {
     // Calculate the width of the health bar based on the grogu's health
     const healthBarWidth = (groguHealth / groguMaxHealth) * 100;
-  
+
     // Update the visual representation of the health bar
     healthBar.width = healthBarWidth;
   }
 
-  
- 
+
+
   const jawaPositions = [
     vec2(20, 100),
     vec2(100, 300),
@@ -176,7 +177,7 @@ const grogu = add([
   ];
 
   function spawnJawaAtPosition(position, distance, speed) {
-   const jawa = add([
+    const jawa = add([
       sprite("jawa"),
       pos(position.x, position.y),
       layer("obj"),
@@ -184,23 +185,23 @@ const grogu = add([
       body(),
       area(),
       {
-        damage:1,
+        damage: 1,
       },
       "jawa",
       solid(),
     ]);
     moveBackAndForth(jawa, distance, speed);
     grogu.collides("jawa", () => {
-        decreasegroguHealth(jawa.damage);
+      decreasegroguHealth(jawa.damage);
     });
     jawas.push(jawa);
     return jawa;
-};
-function destroyJawas() {
+  };
+  function destroyJawas() {
     for (const jawa of jawas) {
-      destroy (jawa); // Remove the enemy from the game
+      destroy(jawa); // Remove the enemy from the game
     }
-  
+
     jawas = []; // Clear the enemies array
   }
 
@@ -223,6 +224,7 @@ function destroyJawas() {
 
   keyDown("up", () => {
     grogu.jump(300);
+    isJumping = true;
   });
 
   keyDown("down", () => {
@@ -249,20 +251,35 @@ function destroyJawas() {
     });
   });
 
+  grogu.action(() => {
+    if (grogu.grounded()) {
+      ifJumping = false
+    }
+  })
+
+  grogu.collides("jawa", (d) => {
+    if (isJumping) {
+      destroy(d);
+      score.innerText = groguscore++
+    } else {
+      gameOver()
+    }
+  })
+
   function gameWin() {
     // Clear the game scene
     destroyJawas();
-    destroy(grogu); 
-    destroy(healthBar); 
+    destroy(grogu);
+    destroy(healthBar);
     add([
       text("You Win!", 32),
       pos(width() / 2, height() / 2),
       origin("center"),
       layer("ui"),
     ]);
-  
+
   }
-  
+
   function checkCollisionWithMando() {
     grogu.collides("mando", () => {
       gameWin();
@@ -272,22 +289,22 @@ function destroyJawas() {
 
   function gameOver() {
     destroyJawas();
-    destroy(grogu); 
-  destroy(healthBar);
-  
-    
+    destroy(grogu);
+    destroy(healthBar);
+
+
     add([
       text("Game Over", 32),
       pos(width() / 2, height() / 2),
       origin("center"),
       layer("ui"),
     ]);
-  
+
     // Additional game over actions can be added here
   }
 
   //layers
-  layers(['bg', 'obj', 'ui'] )
+  layers(['bg', 'obj', 'ui'])
 
   addLevel([
     "                              ",
