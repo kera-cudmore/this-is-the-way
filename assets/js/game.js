@@ -63,7 +63,7 @@ function moveBackAndForth(jawa, distance, speed) {
 
 function shoot(obj) {
     const p = add([
-        scale(0.05),
+        scale(0.2),
         sprite(obj.sprite),
         pos(obj.pos),
         origin('center'),
@@ -108,7 +108,7 @@ scene("game", () => {
   const mando = add([
     sprite("mando"),
     pos(20, 1520),
-    scale(0.6),
+    scale(.6),
     area(),
     body(),
     solid(),
@@ -122,7 +122,7 @@ scene("game", () => {
     sprite("grogu-transit"),
     pos(20, 0),
     layer("obj"),
-    scale(0.1),
+    scale(0.16),
     body(),
     area(),
     solid(),
@@ -183,7 +183,7 @@ scene("game", () => {
       sprite("jawa"),
       pos(position.x, position.y),
       layer("obj"),
-      scale(0.5),
+      scale(1),
       body(),
       area(),
       {
@@ -244,7 +244,8 @@ scene("game", () => {
 
 
   keyDown("up", () => {
-    grogu.jump(250);
+    if(grogu.grounded())
+    grogu.jump(400);
     isJumping = true;
   });
 
@@ -266,7 +267,7 @@ scene("game", () => {
   keyPress("space", () => {
     shoot({
       sprite: "force",
-      speed: 500,
+      speed: 3000,
       angle: grogu.angle,
       pos: grogu.pos.add(grogu.width / 10, grogu.height / 30),
     });
@@ -448,7 +449,7 @@ scene("game", () => {
       'frogs',
        area(),
        solid(),
-       scale(0.4),
+       scale(0.8),
        pos(0, 0),
        layer("obj"),
        body(),
