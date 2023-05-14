@@ -2,16 +2,32 @@ const score = document.getElementById('your-score');
 const livesLeft = document.getElementById('lives-remaining');
 const startPage = document.getElementById('start-game');
 const playButton = document.getElementById('play-button');
+const howtoPlayPage = document.getElementById('how-to-play');
+const instructionsButton = document.getElementById('instructions-btn');
+const goBackButton = document.getElementById('go-back');
 let groguscore = 0;
 let grogulives = 0;
 
+//Event listeners for buttons
 playButton.addEventListener('click', hideStartScreen)
-// initialize kaboom context
-function hideStartScreen(){
-    startPage.style.display = "none";
-}
-kaboom({
+instructionsButton.addEventListener('click', showInstructions)
+goBackButton.addEventListener('click', showStartScreen)
 
+//Functions to display and hide pages.
+function hideStartScreen() {
+  startPage.style.display = "none";
+}
+function showInstructions() {
+  howtoPlayPage.style.display = "flex";
+  startPage.style.display = "none";
+}
+function showStartScreen() {
+  startPage.style.display = "flex";
+  howtoPlayPage.style.display = "none";
+}
+
+// initialize kaboom context
+kaboom({
     global: true,
       fullscreen: true,
     width: 480,
@@ -59,25 +75,25 @@ function moveBackAndForth(jawa, distance, speed) {
 }
 
 function shoot(obj) {
-    const p = add([
-        scale(0.2),
-        sprite(obj.sprite),
-        pos(obj.pos),
-        origin('center'),
-        lifespan(1.5),
-        'projectile'
-    ]);
+  const p = add([
+    scale(0.2),
+    sprite(obj.sprite),
+    pos(obj.pos),
+    origin('center'),
+    lifespan(1.5),
+    'projectile'
+  ]);
 
-    const speed = obj.speed ?? 600;
-    const angle = obj.angle ?? 0;
-    const vx = speed * Math.cos(angle);
-    const vy = speed * Math.sin(angle);
+  const speed = obj.speed ?? 600;
+  const angle = obj.angle ?? 0;
+  const vx = speed * Math.cos(angle);
+  const vy = speed * Math.sin(angle);
 
-    p.action(() => {
-        p.move(vx * dt(), vy * dt());
-    });
+  p.action(() => {
+    p.move(vx * dt(), vy * dt());
+  });
 
-    return p;
+  return p;
 }
 
 
@@ -135,7 +151,6 @@ scene("game", () => {
 //     camPos(240,400),
 //     camScale(width()/480),
 //   ]);
-
 //   camera.camPos = vec2(0, 0); // Set the camera position to (0, 0)
 // camera.camScale = width() / 480; // Adjust the camera scale to fit the canvass
 grogu.onUpdate(() => {
@@ -268,15 +283,15 @@ function gameOver() {
     const speed = configuration.speed;
     spawnJawaAtPosition(position, distance, speed);
   });
-  
+
   action("frogs", (f) => {
-        f.move(0, -10);
-        f.action(() => {
-          if (f.grounded()) {
-            f.jump(10);
-          }
-        });
+    f.move(0, -10);
+    f.action(() => {
+      if (f.grounded()) {
+        f.jump(10);
+      }
     });
+  });
 
   grogu.collides('frogs', (f) => {
     destroy(f)
@@ -288,8 +303,8 @@ function gameOver() {
 // MOVEMENTS
 
   keyDown("up", () => {
-    if(grogu.grounded())
-    grogu.jump(400);
+    if (grogu.grounded())
+      grogu.jump(400);
     isJumping = true;
   });
 
@@ -323,7 +338,38 @@ function gameOver() {
     }
   })
 
+  // grogu.collides("jawa", (d) => {
+  //if (isJumping) {
+  //  destroy(d);
+  //  score.innerText = groguscore++
+  // } else {
+  //  gameOver()
+  // }
+  // })
 
+  function gameWin() {
+    // Clear the game scene
+    destroyJawas();
+    destroy(grogu);
+    destroy(healthBar);
+    add([
+      text("You Win!", 32),
+      pos(width() / 2, height() / 2),
+      origin("center"),
+      layer("ui"),
+    ]);
+
+  const resetButton = document.querySelector("#reset-button");
+  resetButton.addEventListener("click", () => {
+    location.reload();
+  });
+
+
+  function checkCollisionWithMando() {
+    grogu.collides("mando", () => {
+      gameWin();
+    });
+  }
 
   grogu.action(checkCollisionWithMando);
 
@@ -391,11 +437,11 @@ function gameOver() {
     "          #             ======",
     "                        ======",
     "                              ",
-    "         ============         ",
-    "         ==================   ",
-    "======   ==================   ",
-    "======   ==================   ",
-    "======                        ",
+    "          ===========         ",
+    "          =================   ",
+    "=====     =================   ",
+    "=====     =================   ",
+    "=====                         ",
     "======                        ",
     "======                        ",
     "=========================     ",
@@ -451,23 +497,23 @@ function gameOver() {
     "f": () => [
       sprite("frogs"),
       'frogs',
-       area(),
-       solid(),
-       scale(0.8),
-       pos(0, 0),
-       layer("obj"),
-       body(),
+      area(),
+      solid(),
+      scale(0.8),
+      pos(0, 0),
+      layer("obj"),
+      body(),
     ],
     "#": () => [
-       sprite("brick"),
-       area(),
-       solid(),
-       scale(1),
-       pos(0, 0),
-       layer("obj"),
-       fixed(),
+      sprite("brick"),
+      area(),
+      solid(),
+      scale(1),
+      pos(0, 0),
+      layer("obj"),
+      fixed(),
     ],
-    
+
 
   })
   add([sprite("background"), layer("bg")]);
