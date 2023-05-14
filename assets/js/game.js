@@ -315,18 +315,21 @@ scene("game", () => {
   // })
 
   function gameWin() {
-    // Clear the game scene
     destroyJawas();
     destroy(grogu);
     destroy(healthBar);
-    add([
+
+    const message = add([
       text("You Win!", 32),
       pos(width() / 2, height() / 2),
       origin("center"),
       layer("ui"),
-    ]);
+    ])
+
+    message.move(0, -100, 2);
 
   }
+
 
   const resetButton = document.querySelector("#reset-button");
   resetButton.addEventListener("click", () => {
@@ -346,16 +349,15 @@ scene("game", () => {
     destroy(grogu);
     destroy(healthBar);
 
-
-    add([
+    let gameOverMessage = add([
       text("Game Over", 32),
       pos(width() / 2, height() / 2),
       origin("center"),
       layer("ui"),
     ]);
-
-    // Additional game over actions can be added here
+    gameOverMessage.move(0, -100, 2);
   }
+
 
   //layers
   layers(['bg', 'obj', 'ui'])
@@ -481,7 +483,7 @@ scene("game", () => {
       'frogs',
       area(),
       solid(),
-      scale(0.8),
+      scale(0.5),
       pos(0, 0),
       layer("obj"),
       body(),
