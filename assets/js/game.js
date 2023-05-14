@@ -348,8 +348,49 @@ function gameOver() {
 
 
 
+  function gameWin() {
+    destroyJawas();
+    destroy(grogu);
+    destroy(healthBar);
+
+    const message = add([
+      text("You Win!", 32),
+      pos(width() / 2, height() / 2),
+      origin("center"),
+      layer("ui"),
+    ])
+
+    message.move(0, -100, 2);
+
+  }
+
+
+  const resetButton = document.querySelector("#reset-button");
+  resetButton.addEventListener("click", () => {
+    location.reload();
+  });
+
+
+  function checkCollisionWithMando() {
+    grogu.collides("mando", () => {
+      gameWin();
+    });
+  }
   grogu.action(checkCollisionWithMando);
 
+  function gameOver() {
+    destroyJawas();
+    destroy(grogu);
+    destroy(healthBar);
+
+    let gameOverMessage = add([
+      text("Game Over", 32),
+      pos(width() / 2, height() / 2),
+      origin("center"),
+      layer("ui"),
+    ]);
+    gameOverMessage.move(0, -100, 2);
+  }
 
 
   //layers
@@ -480,6 +521,7 @@ function gameOver() {
        pos(0, 0),
        layer("obj"),
        body(),
+
     ],
     "#": () => [
        sprite("brick"),
