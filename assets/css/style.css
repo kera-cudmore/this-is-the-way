@@ -75,7 +75,7 @@ body {
 }
 
 #game {
-    background-image: url(/assets/sprites/levelsandcrawler.png);
+    background-image: url(../sprites/levelsandcrawler.png);
     background-size: cover;
     padding-left: 0;
     padding-right: 0;
