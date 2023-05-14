@@ -6,7 +6,7 @@ const howtoPlayPage = document.getElementById('how-to-play');
 const instructionsButton = document.getElementById('instructions-btn');
 const goBackButton = document.getElementById('go-back');
 let groguscore = 0;
-let grogulives = 0;
+let grogulives = 1;
 
 //Event listeners for buttons
 playButton.addEventListener('click', hideStartScreen)
@@ -156,8 +156,15 @@ scene("game", () => {
   ]);
 
 
-
-
+  function isAlive(){
+    if (grogulives <= 0){
+        livesLeft.innerText = "0";
+        gameOver()
+    }
+    else {
+        groguHealth = 200;
+    }
+  }
 
 
   // Function to decrease grogu's health
@@ -166,7 +173,9 @@ scene("game", () => {
     updateHealthBar();
     if (groguHealth <= 0) {
       // grogu is defeated, game over logic here
-      gameOver();
+        livesLeft.innerText = --grogulives;
+        isAlive();
+      //gameOver();
     }
 
     // Update the health bar
@@ -315,21 +324,18 @@ scene("game", () => {
   // })
 
   function gameWin() {
+    // Clear the game scene
     destroyJawas();
     destroy(grogu);
     destroy(healthBar);
-
-    const message = add([
+    add([
       text("You Win!", 32),
       pos(width() / 2, height() / 2),
       origin("center"),
       layer("ui"),
-    ])
-
-    message.move(0, -100, 2);
+    ]);
 
   }
-
 
   const resetButton = document.querySelector("#reset-button");
   resetButton.addEventListener("click", () => {
@@ -349,15 +355,16 @@ scene("game", () => {
     destroy(grogu);
     destroy(healthBar);
 
-    let gameOverMessage = add([
+
+    add([
       text("Game Over", 32),
       pos(width() / 2, height() / 2),
       origin("center"),
       layer("ui"),
     ]);
-    gameOverMessage.move(0, -100, 2);
-  }
 
+    // Additional game over actions can be added here
+  }
 
   //layers
   layers(['bg', 'obj', 'ui'])
