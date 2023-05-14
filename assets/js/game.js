@@ -194,9 +194,9 @@ scene("game", () => {
     ]);
     moveBackAndForth(jawa, distance, speed);
 
-    grogu.collides("jawa", () => {
+    grogu.collides("jawa", (d) => {
       if (isJumping === true) {
-        destroy(jawa);
+        destroy(d);
         groguscore++;
         score.innerText = groguscore;
       } else {
