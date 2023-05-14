@@ -76,7 +76,7 @@ body {
 }
 
 #game {
-    background-image: url(/assets/sprites/levelsandcrawler.png);
+    background-image: url(../sprites/levelsandcrawler.png);
     background-size: cover;
     padding-left: 0;
     padding-right: 0;
@@ -122,8 +122,6 @@ body {
     justify-content: space-evenly;
     display: none;
 }
-
-
 
 
 /*----- Text -----*/
@@ -241,7 +239,7 @@ footer {
 
 #team-members {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     list-style: none;
     font: 19px #000 'Space Mono', monospace;
@@ -302,10 +300,6 @@ a:hover {
     h2 {
         font-size: 2rem;
     }
-}
-
-/* Footer flex */
-@media only screen and (max-width :1465px) {
 
     #social-links {
         display: flex;
@@ -346,5 +340,4 @@ a:hover {
     #social-links li {
         padding: 0.5rem;
     }
-    
 }
