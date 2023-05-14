@@ -96,7 +96,7 @@ scene("game", () => {
 
   // Create the health bar entity
   const healthBar = add([
-    rect(300, 20),
+    rect(200, 15),
     pos(10, 10),
     layer("ui"),
     color(239, 85, 75),
@@ -193,12 +193,22 @@ scene("game", () => {
       solid(),
     ]);
     moveBackAndForth(jawa, distance, speed);
+
     grogu.collides("jawa", () => {
-      decreasegroguHealth(jawa.damage);
+      if (isJumping === true) {
+        destroy(jawa);
+        groguscore++;
+        score.innerText = groguscore;
+      } else {
+        decreasegroguHealth(jawa.damage);
+      }
     });
+
+
     jawas.push(jawa);
     return jawa;
   };
+
   function destroyJawas() {
     for (const jawa of jawas) {
       destroy(jawa); // Remove the enemy from the game
@@ -234,7 +244,7 @@ scene("game", () => {
 
 
   keyDown("up", () => {
-    grogu.jump(300);
+    grogu.jump(250);
     isJumping = true;
   });
 
@@ -264,18 +274,18 @@ scene("game", () => {
 
   grogu.action(() => {
     if (grogu.grounded()) {
-      ifJumping = false
+      isJumping = false
     }
   })
 
-  grogu.collides("jawa", (d) => {
-    if (isJumping) {
-      destroy(d);
-      score.innerText = groguscore++
-    } else {
-      gameOver()
-    }
-  })
+ // grogu.collides("jawa", (d) => {
+    //if (isJumping) {
+    //  destroy(d);
+    //  score.innerText = groguscore++
+   // } else {
+    //  gameOver()
+   // }
+ // })
 
   function gameWin() {
     // Clear the game scene
