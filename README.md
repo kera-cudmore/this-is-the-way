@@ -13,6 +13,12 @@ SHIELDS.IO BADGES TO GO HERE
 ## USER EXPERIENCE
 
 ### USER STORIES
+As a user I would like:
+* Clear and concise instructions for the game
+* To have consistent feedback on my progress throughout the game (e.g. lives remaining)
+* To be able to move Grogu intuitively through the map
+* A fun and original game experience with Madolorian music and imagery
+* Functionality to turn the music on/off
 
 As a user I would like:
 * Clear and concise instructions for the game
@@ -22,7 +28,20 @@ As a user I would like:
 * Functionality to turn the music on/off
 
 ### DESIGN
+We took inspiration for our color scheme from the planet Tatooine (specifically its iconic binary sunset!). Using [Adobe Color](https://color.adobe.com/create/image) we extracted a theme based on this image:
 
+![Movie still from the movie Star Wars IV: A New Hope](/assets/images/syfy_image.jpg)
+
+The following colors were selected:
+- ![#8C6175](https://placehold.co/15x15/8C6175/8C6175.png) Purple 
+- ![#40342d](https://placehold.co/15x15/40342d/40342d.png) Brown
+- ![#ef554b](https://placehold.co/15x15/ef554b/ef554b.png) Orange
+- ![#a6695b](https://placehold.co/15x15/a6695b/a6695b.png) Camel
+- ![#a66868](https://placehold.co/15x15/a66868/a66868.png) Dusty Pink
+
+We cross referenced the colors using [Eight Shapes](www.https://contrast-grid.eightshapes.com/) to test the contrast and made sure we used readable combinations throughout the website.
+
+![Results from the Eight Shapes test](/assets/images/eightshapes_contrastgrid.png)
 #### COLOUR SCHEME
 
 We took inspiration for our color scheme from the planet Tatooine (specifically its iconic binary sunset!). Using [Adobe Color](https://color.adobe.com/create/image) we extracted a theme based on this image:
