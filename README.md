@@ -143,6 +143,7 @@ Our favicon is an image of Grogu and he is displayed within the browser tabs and
 * [Shields.io](https://shields.io/) - For badges used in README
 * [Kaboomjs](https://kaboomjs.com/) - Game programming library
 * [Piskelapp](https://www.piskelapp.com/p/create/sprite) - to create the sprites
+* Photoshop - For the creation of sprites and game pieces
 
 ## DEPLOYMENT & DEVELOPMENT
 
