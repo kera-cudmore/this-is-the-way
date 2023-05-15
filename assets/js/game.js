@@ -104,16 +104,7 @@ scene("game", () => {
   let jawas = [];
   const groguMaxHealth = 100;
   let groguHealth = groguMaxHealth;
-  const mando = add([
-    sprite("mando"),
-    pos(100, 0),
-    scale(10),
-    area(),
-    body(),
-    solid(),
-    "mando",
-]);
-
+  
   const grogu = add([
     sprite("grogu-transit"),
     pos(20,0),
@@ -453,7 +444,7 @@ grogu.onUpdate(()=>{
     "============     ==== =========",
     "============     ==== =========",
     "=                            ==",
-    "=                            ==",
+    "=           M                ==",
     "=                            ==",
     "===============================",
     "===============================",
@@ -483,14 +474,15 @@ grogu.onUpdate(()=>{
        body(),
 
     ],
-    "#": () => [
-       sprite("brick"),
+    
+    "M": () => [
+       sprite("mando"),
        area(),
        solid(),
-       scale(1),
+       scale(0.8),
        pos(0, 0),
        layer("obj"),
-       fixed(),
+        
     ],
   });
 
