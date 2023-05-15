@@ -65,7 +65,7 @@ function moveBackAndForth(jawa, distance, speed) {
   const initialPos = jawa.pos.x;
   let direction = 1;
 
-  jawa.action(() => {
+  jawa.onUpdate(() => {
     const currentPosition = jawa.pos.x - initialPos;
 
     if (currentPosition >= distance || currentPosition <= 0) {
@@ -97,14 +97,14 @@ function shoot(obj) {
     const vx = speed * Math.cos(angle);
     const vy = speed * Math.sin(angle);
 
-    p.action(() => {
+    p.onUpdate(() => {
         p.move(vx * dt(), vy * dt());
     });
 
     return p;
 }
 
-
+layer("ui", "top");
 
 // create game scenes
 scene("game", () => {
@@ -117,16 +117,7 @@ scene("game", () => {
   livesLeft.innerText = grogulives;
 
   // VARIABLES
-  const healthBar = add([
-    rect(200, 15),
-    pos(10, 10),
-    layer("ui"),
-    color(239, 85, 75),
-    {
-      width: 100,
-      height: 10,
-    },
-  ]);
+ 
  
   const movementSpeed = 100;
   let jawas = [];
@@ -204,9 +195,6 @@ camera.onUpdate(() => {
           
     }
     camPos(grogu.pos.x-cameraOffsetX,grogu.pos.y-cameraOffsetY)
-    console.log(cameraOffsetX);
-    console.log(cameraOffsetY);
-
 })
 
   const jawaPositions = [
@@ -242,8 +230,20 @@ camera.onUpdate(() => {
 
     // Update the health bar
   }
-
-
+ const healthBar = add([
+    rect(200, 15),
+    pos(10,10),
+    layer("ui"),
+    color(239, 85, 75),
+    {
+      width: 100,
+      height: 10,
+    },
+  ]);
+  onUpdate("grogu", () => {
+    healthBar.pos.x = camPos().x - 220;
+    healthBar.pos.y = camPos().y - 180;
+  });
   function updateHealthBar() {
     // Calculate the width of the health bar based on the grogu's health
     const healthBarWidth = (groguHealth / groguMaxHealth) * 100;
@@ -299,9 +299,9 @@ camera.onUpdate(() => {
     spawnJawaAtPosition(position, distance, speed);
   });
   
-  action("frogs", (f) => {
+  onUpdate("frogs", (f) => {
         f.move(0, -10);
-        f.action(() => {
+        f.onUpdate(() => {
           if (f.grounded()) {
             f.jump(10);
           }
@@ -365,7 +365,7 @@ grogu.onUpdate(()=>{
     });
   });
 
-  grogu.action(() => {
+  grogu.onUpdate(() => {
     if (grogu.grounded()) {
       isJumping = false
     }
@@ -398,7 +398,7 @@ grogu.onUpdate(()=>{
       layer("ui"),
     ]);
 
-    // Additional game over actions can be added here
+    // Additional game over onUpdates can be added here
   }
 
   //layers
