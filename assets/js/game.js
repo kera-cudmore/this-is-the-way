@@ -28,18 +28,18 @@ kaboom({
     global: true,
       fullscreen: true,
     width: 480,
-    height: 1600,
+    height: 400,
     canvas: document.querySelector("#game"),
     scale: 2,
     debug: true,
     background: [0, 0, 0, 0],
 })
 
+
 let isJumping = true;
 
 // loads sprite
 loadRoot("assets/");
-loadSprite("mando", "sprites/Mando1stSprite.png");
 loadSprite("grogu-transit", "sprites/grogu-transit.png");
 loadSprite("jawa", "sprites/Jawa.png");
 loadSprite("ground", "sprites/ground.png");
@@ -48,8 +48,18 @@ loadSprite("frogs", "sprites/Frog.png");
 loadSprite("brick", "sprites/decor.png")
 loadSprite("background", "sprites/levelsandcrawler.png");
 loadSound("theme", "sounds/FluffingaDuck.mp3");
+loadSprite("mando", "sprites/Mando1stSprite.png");
 
-
+// const mando = add([
+//     sprite("mando"),
+//     pos(100, 0),
+//     layer["obj"],
+//     scale(.6),
+//     area(),
+//     body(),
+//     solid(),
+//     "mando",
+//   ]);
 
 function moveBackAndForth(jawa, distance, speed) {
   const initialPos = jawa.pos.x;
@@ -117,19 +127,21 @@ scene("game", () => {
       height: 10,
     },
   ]);
-  const mando = add([
-    sprite("mando"),
-    pos(20, 1520),
-    scale(.6),
-    area(),
-    body(),
-    solid(),
-    "mando",
-  ]);
+ 
   const movementSpeed = 100;
   let jawas = [];
   const groguMaxHealth = 100;
   let groguHealth = groguMaxHealth;
+  const mando = add([
+    sprite("mando"),
+    pos(100, 0),
+    scale(10),
+    area(),
+    body(),
+    solid(),
+    "mando",
+]);
+
   const grogu = add([
     sprite("grogu-transit"),
     pos(20,0),
@@ -220,43 +232,6 @@ camera.onUpdate(() => {
 
 //   FUNCTIONS
 
-
-function gameWin() {
-    // Clear the game scene
-    destroyJawas();
-    destroy(grogu);
-    destroy(healthBar);
-    add([
-      text("You Win!", 32),
-      pos(width() / 2, height() / 2),
-      origin("center"),
-      layer("ui"),
-    ]);
-
-  }
-
-  function checkCollisionWithMando() {
-    grogu.collides("mando", () => {
-      gameWin();
-    });
-  }
-
-function gameOver() {
-    destroyJawas();
-    destroy(grogu);
-    destroy(healthBar);
-
-
-    add([
-      text("Game Over", 32),
-      pos(width() / 2, height() / 2),
-      origin("center"),
-      layer("ui"),
-    ]);
-
-    // Additional game over actions can be added here
-  }
-
   function decreasegroguHealth(damage) {
     groguHealth -= damage;
     updateHealthBar();
@@ -338,8 +313,26 @@ function gameOver() {
     livesLeft.innerText = ++grogulives;
   })
 
-
   
+  function gameWin() {
+    // Clear the game scene
+    destroyJawas();
+    destroy(grogu); 
+    destroy(healthBar); 
+    add([
+      text("You Win!", 32),
+      pos(width() / 2,1400),
+      origin("center"),
+      layer("ui"),
+    ]);
+
+  }
+
+grogu.onUpdate(()=>{
+    if(grogu.pos.y>1500){
+        gameWin();
+    }
+})
 // MOVEMENTS
 
   keyDown("up", () => {
@@ -380,19 +373,9 @@ function gameOver() {
 
 
 
-  function gameWin() {
-    // Clear the game scene
-    destroyJawas();
-    destroy(grogu);
-    destroy(healthBar);
-    add([
-      text("You Win!", 32),
-      pos(width() / 2, height() / 2),
-      origin("center"),
-      layer("ui"),
-    ]);
+  
 
-  }
+
 
   const resetButton = document.querySelector("#reset-button");
   resetButton.addEventListener("click", () => {
@@ -400,12 +383,7 @@ function gameOver() {
   });
 
 
-  function checkCollisionWithMando() {
-    grogu.collides("mando", () => {
-      gameWin();
-    });
-  }
-  grogu.action(checkCollisionWithMando);
+  
 
   function gameOver() {
     destroyJawas();
@@ -427,106 +405,106 @@ function gameOver() {
   layers(['bg', 'obj', 'ui'])
 // LEVEL
   addLevel([
-    "                              ",
-    "                         f    ",
-    "                         #    ",
-    "                              ",
-    "                              ",
+    "=                            =",
+    "=                        f   =",
+    "=                        =   =",
+    "=                            =",
+    "=                            =",
     "=============     ============",
     "=============     ============",
-    "                  ==          ",
-    "                  ==          ",
-    "           =========          ",
-    " f         =========    ======",
-    " #                      ======",
-    "                              ",
-    "                              ",
-    "                              ",
-    "=========================     ",
-    "=========================     ",
-    "=========================     ",
-    "                              ",
-    "                              ",
-    "                              ",
-    "     =========================",
-    "     =========================",
-    "     =========================",
-    "     =========================",
-    "                              ",
-    "                              ",
-    "                              ",
-    "=====================         ",
-    "=====================         ",
-    "                              ",
-    "                              ",
-    "       f                      ",
-    "       #             =========",
-    "                     =========",
-    "               ==             ",
-    "                              ",
-    "                              ",
-    "                              ",
-    "                              ",
-    "=============           ======",
-    "=============           ======",
-    "=============           ======",
-    "=============           ======",
-    "                 =============",
-    "                 =============",
-    "                              ",
-    "                              ",
-    "                              ",
-    "==================            ",
-    "==================            ",
-    "=======================       ",
-    "=======================       ",
-    "                              ",
-    "          f                   ",
-    "          #             ======",
-    "                        ======",
-    "                              ",
-    "         ============         ",
-    "         ==================   ",
-    "======   ==================   ",
-    "======   ==================   ",
-    "======                        ",
-    "======                        ",
-    "======                        ",
-    "=========================     ",
-    "=========================     ",
-    "                       ====   ",
-    "                       ==     ",
-    "                              ",
-    "                              ",
-    "            ==================",
-    "            ==================",
-    "        ==                    ",
-    "                   f          ",
-    "                   #          ",
-    "                              ",
-    "                              ",
-    "===========                   ",
-    "===========                   ",
-    "==========================    ",
-    "==========================    ",
-    "===========           ====    ",
-    "===========           ====    ",
-    "===========           ====    ",
-    "===========          ======   ",
-    "============         ======   ",
-    "============                  ",
-    "                              ",
-    "        f                     ",
-    "        #             ========",
-    "                      ========",
-    "============     ==== ========",
-    "============     ==== ========",
-    "                             =",
-    "                             =",
-    "                             =",
-    "==============================",
-    "==============================",
-    "==============================",
+    "=                 ==         =",
+    "=                 ==         =",
+    "=          =========         =",
+    "=f         =========    ======",
+    "==                      ======",
+    "=                             =",
+    "=                             =",
+    "=                             =",
+    "=========================     =",
+    "=========================     =",
+    "=========================     =",
+    "=                             =",
+    "=                             =",
+    "=                             =",
+    "=    =========================",
+    "=    =========================",
+    "=    =========================",
+    "=    =========================",
+    "=                             =",
+    "=                             =",
+    "=                             =",
+    "=====================         =",
+    "=====================         =",
+    "=                             =",
+    "=                             =",
+    "=      f                      =",
+    "=      =             ==========",
+    "=                    ==========",
+    "=              ==             =",
+    "=                             =",
+    "=                             =",
+    "=                             =",
+    "=                             =",
+    "=============           =======",
+    "=============           =======",
+    "=============           =======",
+    "=============           =======",
+    "=                ==============",
+    "=                ==============",
+    "=                             =",
+    "=                             =",
+    "=                             =",
+    "==================            =",
+    "==================            =",
+    "=======================       =",
+    "=======================       =",
+    "=                             =",
+    "=         f                   =",
+    "=         =             =======",
+    "=                       =======",
+    "=                             =",
+    "=        ============         =",
+    "=        ==================   =",
+    "======   ==================   =",
+    "======   ==================   =",
+    "======                        =",
+    "======                        =",
+    "======                        =",
+    "=========================     =",
+    "=========================     =",
+    "=                      ====   =",
+    "=                      ==     =",
+    "=                             =",
+    "=                             =",
+    "=           ===================",
+    "=           ===================",
+    "=       ==                    =",
+    "=                  f          =",
+    "=                  =          =",
+    "=                             =",
+    "=                             =",
+    "===========                   =",
+    "===========                   =",
+    "==========================    =",
+    "==========================    =",
+    "===========           ====    =",
+    "===========           ====    =",
+    "===========           ====    =",
+    "===========          ======   =",
+    "============         ======   =",
+    "============                  =",
+    "=                             =",
+    "=       f                     =",
+    "=       =             =========",
+    "=                     =========",
+    "============     ==== =========",
+    "============     ==== =========",
+    "=                            ==",
+    "=                            ==",
+    "=                            ==",
+    "===============================",
+    "===============================",
+    "===============================",
 
 
   ], {
