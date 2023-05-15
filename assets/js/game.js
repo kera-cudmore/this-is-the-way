@@ -15,7 +15,7 @@ kaboom({
     global: true,
       fullscreen: true,
     width: 480,
-    height: 200,
+    height: 1600,
     canvas: document.querySelector("#game"),
     scale: 2,
     debug: true,
@@ -121,7 +121,7 @@ scene("game", () => {
     sprite("grogu-transit"),
     pos(20,0),
     layer("obj"),
-    scale(0.16),
+    scale(0.1),
     body(),
     area(),
     solid(),
@@ -143,15 +143,11 @@ const camera = add([
 camera.onUpdate(() => {
     cameraOffsetX=grogu.pos.x-width()/2;
     cameraOffsetY=grogu.pos.y-height()/2;
-    // if (cameraOffsetX>1){
-    //         cameraOffsetX=1;}
+
     if (cameraOffsetX>=240){
         cameraOffsetX=240;
     }
-    // if(cameraOffsetX>=-5){
-    //     cameraOffsetX=-5;
-          
-    // }
+   
     if(cameraOffsetY>5){
         cameraOffsetY=5;
     }
