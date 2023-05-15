@@ -478,7 +478,6 @@ grogu.onUpdate(()=>{
     "M": () => [
        sprite("mando"),
        area(),
-       solid(),
        scale(0.8),
        pos(0, 0),
        layer("obj"),
