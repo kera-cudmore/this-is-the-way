@@ -187,8 +187,8 @@ camera.onUpdate(() => {
 
     }
    
-    if(cameraOffsetY>5){
-        cameraOffsetY=5;
+    if(cameraOffsetY>110){
+        cameraOffsetY=110;
     }
     else{
         cameraOffsetY=cameraOffsetY;
