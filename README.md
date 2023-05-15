@@ -4,7 +4,9 @@ RESPONSIVE SITE IMAGE TO GO HERE
 
 Team Livin' La Vida Yoda's Game entry for the May the Force be with you Code Institute Hackathon, May 2023.
 
-BLURB ABOUT PROJECT TO GO  HERE
+'This Is The Way' is a one-player game for large screens (not currently available for mobile devices - Patience, my young Padawan!) You play Grogu from 'The Mandolorian', facing off against Jawas and collecting frogs before reuniting with The Mandolorian. Click 'Play Music' to get the full 'Mandolorian' experience!
+
+This mechanics for this game were created using [Kaboomjs](https://kaboomjs.com/).
 
 SHIELDS.IO BADGES TO GO HERE
 
@@ -69,9 +71,9 @@ To make the heading 'pop' we have styled it using the text-shadow attribute in t
 
 ![Mandalore Font Preview](documentation/mandalore-font.png)
 
-INFO ABOUT SPACE FONT HERE
+Space Mono is an original fixed-width type family designed by Colophon Foundry for Google Design. It supports a Latin Extended glyph set, enabling typesetting for English and other Western European languages.
 
-INFO ABOUT BACKUPS SELECTED
+'Monospace' is the back-up font for this site.
 
 #### IMAGERY
 
@@ -79,7 +81,11 @@ Imagery used throughout the site is based on Star Wars and the Mandalorian.
 
 #### WIREFRAMES
 
+[Balsamiq](https://balsamiq.com/wireframes/) was used in our planning stage.
 
+![With Loading Screen](/assets/images/wireframe2.png)
+
+![Without Loading Screen](/assets/images/wireframe1.png)
 
 ### FEATURES
 
