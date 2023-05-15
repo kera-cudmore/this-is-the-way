@@ -3,7 +3,7 @@ const livesLeft = document.getElementById('lives-remaining');
 const startPage = document.getElementById('start-game');
 const playButton = document.getElementById('play-button');
 let groguscore = 0;
-let grogulives = 0;
+let grogulives = 1;
 
 playButton.addEventListener('click', hideStartScreen)
 // initialize kaboom context
@@ -139,6 +139,28 @@ const camera = add([
 ]);
 
 
+  function isAlive(){
+    if (grogulives <= 0){
+        livesLeft.innerText = "0";
+        gameOver()
+    }
+    else {
+        groguHealth = 200;
+    }
+  }
+
+
+  // Function to decrease grogu's health
+  function decreasegroguHealth(damage) {
+    groguHealth -= damage;
+    updateHealthBar();
+    if (groguHealth <= 0) {
+      // grogu is defeated, game over logic here
+        livesLeft.innerText = --grogulives;
+        isAlive();
+      //gameOver();
+
+
 
 camera.onUpdate(() => {
     cameraOffsetX=grogu.pos.x-width()/2;
@@ -147,6 +169,7 @@ camera.onUpdate(() => {
     //         cameraOffsetX=1;}
     if (cameraOffsetX>=240){
         cameraOffsetX=240;
+
     }
     // if(cameraOffsetX>=-5){
     //     cameraOffsetX=-5;
@@ -349,21 +372,18 @@ function gameOver() {
 
 
   function gameWin() {
+    // Clear the game scene
     destroyJawas();
     destroy(grogu);
     destroy(healthBar);
-
-    const message = add([
+    add([
       text("You Win!", 32),
       pos(width() / 2, height() / 2),
       origin("center"),
       layer("ui"),
-    ])
-
-    message.move(0, -100, 2);
+    ]);
 
   }
-
 
   const resetButton = document.querySelector("#reset-button");
   resetButton.addEventListener("click", () => {
@@ -383,15 +403,16 @@ function gameOver() {
     destroy(grogu);
     destroy(healthBar);
 
-    let gameOverMessage = add([
+
+    add([
       text("Game Over", 32),
       pos(width() / 2, height() / 2),
       origin("center"),
       layer("ui"),
     ]);
-    gameOverMessage.move(0, -100, 2);
-  }
 
+    // Additional game over actions can be added here
+  }
 
   //layers
   layers(['bg', 'obj', 'ui'])
