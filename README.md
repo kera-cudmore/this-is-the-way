@@ -147,11 +147,18 @@ HOW TO DEPLOY INSTRUCTIONS HERE
 
 #### HOW TO FORK
 
-HOW TO FORK INFO HERE
+On the repo page for This is the Way, click the fork button in the top right. This will create a copy of the original repository in your GitHub, and you will be redirected to the main repo page for your forked version. Any changes you make in your forked repo won't affect the original repo until you create a pull request to have those changes merged into the original (more on this soon!)
 
 #### HOW TO CLONE
 
-HOW TO CLONE INFO HERE
+In your forked repo, click the code button and select HTTPS. Copy the link displayed.
+
+Open up your Integrated Development Environment (IDE) and in the terminal enter:
+
+```
+git clone {insert copied url here}
+```
+This will then clone the project for you to work on locally.
 
 ## TESTING
 
