@@ -179,9 +179,9 @@ we utilised the console in the developer tools to work through small sections of
 
 [W3C](https://validator.w3.org/) was used to validate the HTML on all pages of the website. It was also used to validate the CSS.
 
-* [index.html]()
-
-* [style.css]()
+* [index.html](https://validator.w3.org/nu/?doc=https%3A%2F%2Fkera-cudmore.github.io%2Fthis-is-the-way%2Findex.html)
+* [404.html](https://validator.w3.org/nu/?doc=https%3A%2F%2Fkera-cudmore.github.io%2Fthis-is-the-way%2F404.html)
+* [style.css](documentation/testing/css-validation.png)
 
 ### JavaScript Validator
 

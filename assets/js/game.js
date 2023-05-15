@@ -1,3 +1,4 @@
+// DEFINE VARIABLES
 const score = document.getElementById('your-score');
 const livesLeft = document.getElementById('lives-remaining');
 const startPage = document.getElementById('start-game');
@@ -8,33 +9,31 @@ const goBackButton = document.getElementById('go-back');
 let groguscore = 0;
 let grogulives = 1;
 
-instructionsButton.addEventListener('click', showInstructions)
+instructionsButton.addEventListener('click', showInstructions);
 function showInstructions() {
     howtoPlayPage.style.display = "flex";
     startPage.style.display = "none";
   }
-  goBackButton.addEventListener('click', showStartScreen)
+  goBackButton.addEventListener('click', showStartScreen);
   function showStartScreen() {
     startPage.style.display = "flex";
     howtoPlayPage.style.display = "none";
   }
 
-playButton.addEventListener('click', hideStartScreen)
+playButton.addEventListener('click', hideStartScreen);
 function hideStartScreen(){
     startPage.style.display = "none";
 }
 kaboom({
-
     global: true,
-      fullscreen: true,
+    fullscreen: true,
     width: 480,
     height: 400,
     canvas: document.querySelector("#game"),
     scale: 2,
     debug: true,
     background: [0, 0, 0, 0],
-})
-
+});
 
 let isJumping = true;
 
@@ -45,21 +44,10 @@ loadSprite("jawa", "sprites/Jawa.png");
 loadSprite("ground", "sprites/ground.png");
 loadSprite("force", "sprites/force.png");
 loadSprite("frogs", "sprites/Frog.png");
-loadSprite("brick", "sprites/decor.png")
+loadSprite("brick", "sprites/decor.png");
 loadSprite("background", "sprites/levelsandcrawler.png");
 loadSound("theme", "sounds/FluffingaDuck.mp3");
 loadSprite("mando", "sprites/Mando1stSprite.png");
-
-// const mando = add([
-//     sprite("mando"),
-//     pos(100, 0),
-//     layer["obj"],
-//     scale(.6),
-//     area(),
-//     body(),
-//     solid(),
-//     "mando",
-//   ]);
 
 function moveBackAndForth(jawa, distance, speed) {
   const initialPos = jawa.pos.x;
@@ -108,17 +96,10 @@ layer("ui", "top");
 
 // create game scenes
 scene("game", () => {
-    
-
-  // play("theme", { loop: true });
-  // volume(0.1);
-
   score.innerText = groguscore;
   livesLeft.innerText = grogulives;
 
   // VARIABLES
- 
- 
   const movementSpeed = 100;
   let jawas = [];
   const groguMaxHealth = 100;
@@ -154,18 +135,6 @@ const camera = add([
     camScale(1),
 ]);
 
-
-//   function isAlive(){
-//     if (grogulives <= 0){
-//         livesLeft.innerText = "0";
-//         gameOver()
-//     }
-//     else {
-//         groguHealth = 200;
-//     }
-//   }
-
-
   // Function to decrease grogu's health
   function decreasegroguHealth(damage) {
     groguHealth -= damage;
@@ -177,7 +146,6 @@ const camera = add([
       //gameOver();
     }}
 
-
 camera.onUpdate(() => {
     cameraOffsetX=grogu.pos.x-width()/2;
     cameraOffsetY=grogu.pos.y-height()/2;
@@ -186,16 +154,16 @@ camera.onUpdate(() => {
         cameraOffsetX=240;
 
     }
-   
+
     if(cameraOffsetY>110){
         cameraOffsetY=110;
     }
     else{
         cameraOffsetY=cameraOffsetY;
-          
+
     }
-    camPos(grogu.pos.x-cameraOffsetX,grogu.pos.y-cameraOffsetY)
-})
+    camPos(grogu.pos.x-cameraOffsetX,grogu.pos.y-cameraOffsetY);
+});
 
   const jawaPositions = [
     vec2(20, 100),
@@ -205,8 +173,8 @@ camera.onUpdate(() => {
     vec2(40, 700),
     vec2(140, 900),
     vec2(200, 1200),
-    // Add more spawn positions as needed
   ];
+
   const jawasConfigurations = [
     { distance: 250, speed: 70 },
     { distance: 250, speed: 70 },
@@ -219,7 +187,6 @@ camera.onUpdate(() => {
   ];
 
 //   FUNCTIONS
-
   function decreasegroguHealth(damage) {
     groguHealth -= damage;
     updateHealthBar();
@@ -230,7 +197,7 @@ camera.onUpdate(() => {
 
     // Update the health bar
   }
- const healthBar = add([
+  const healthBar = add([
     rect(200, 15),
     pos(10,10),
     layer("ui"),
@@ -240,10 +207,12 @@ camera.onUpdate(() => {
       height: 10,
     },
   ]);
+
   onUpdate("grogu", () => {
     healthBar.pos.x = camPos().x - 220;
     healthBar.pos.y = camPos().y - 180;
   });
+
   function updateHealthBar() {
     // Calculate the width of the health bar based on the grogu's health
     const healthBarWidth = (groguHealth / groguMaxHealth) * 100;
@@ -251,7 +220,6 @@ camera.onUpdate(() => {
     // Update the visual representation of the health bar
     healthBar.width = healthBarWidth;
   }
-
 
   function spawnJawaAtPosition(position, distance, speed) {
     const jawa = add([
@@ -279,10 +247,9 @@ camera.onUpdate(() => {
       }
     });
 
-
     jawas.push(jawa);
     return jawa;
-  };
+  }
 
   function destroyJawas() {
     for (const jawa of jawas) {
@@ -298,7 +265,7 @@ camera.onUpdate(() => {
     const speed = configuration.speed;
     spawnJawaAtPosition(position, distance, speed);
   });
-  
+
   onUpdate("frogs", (f) => {
         f.move(0, -10);
         f.onUpdate(() => {
@@ -309,33 +276,31 @@ camera.onUpdate(() => {
     });
 
   grogu.collides('frogs', (f) => {
-    destroy(f)
+    destroy(f);
     groguscore++;
     score.innerText = groguscore;
-  })
+  });
 
-  
   function gameWin() {
     // Clear the game scene
     destroyJawas();
-    destroy(grogu); 
-    destroy(healthBar); 
+    destroy(grogu);
+    destroy(healthBar);
     add([
       text("You Win!", 32),
       pos(width() / 2,1400),
       origin("center"),
       layer("ui"),
     ]);
-
   }
 
 grogu.onUpdate(()=>{
     if(grogu.pos.y>1500){
         gameWin();
     }
-})
-// MOVEMENTS
+});
 
+// MOVEMENTS
   keyDown("up", () => {
     if(grogu.grounded())
     grogu.jump(400);
@@ -356,7 +321,6 @@ grogu.onUpdate(()=>{
     grogu.flipX(false);
   });
 
-
   keyPress("space", () => {
     shoot({
       sprite: "force",
@@ -368,29 +332,19 @@ grogu.onUpdate(()=>{
 
   grogu.onUpdate(() => {
     if (grogu.grounded()) {
-      isJumping = false
+      isJumping = false;
     }
-  })
-
-
-
-  
-
-
+  });
 
   const resetButton = document.querySelector("#reset-button");
   resetButton.addEventListener("click", () => {
     location.reload();
   });
 
-
-  
-
   function gameOver() {
     destroyJawas();
     destroy(grogu);
     destroy(healthBar);
-
 
     add([
       text("Game Over", 32),
@@ -398,12 +352,10 @@ grogu.onUpdate(()=>{
       origin("center"),
       layer("ui"),
     ]);
-
-    // Additional game over onUpdates can be added here
   }
 
   //layers
-  layers(['bg', 'obj', 'ui'])
+  layers(['bg', 'obj', 'ui']);
 // LEVEL
   addLevel([
     "=                            =",
@@ -507,7 +459,6 @@ grogu.onUpdate(()=>{
     "===============================",
     "===============================",
 
-
   ], {
     // define the size of each block
     width: 16,
@@ -541,14 +492,11 @@ grogu.onUpdate(()=>{
        layer("obj"),
        fixed(),
     ],
-    
+  });
 
-  })
   add([sprite("background"), layer("bg")]);
   add([sprite, layer("obj")]);
   add([sprite, layer("ui")]);
-
-
 });
 // start game
-go("game")
+go("game");
