@@ -2,11 +2,24 @@ const score = document.getElementById('your-score');
 const livesLeft = document.getElementById('lives-remaining');
 const startPage = document.getElementById('start-game');
 const playButton = document.getElementById('play-button');
+const howtoPlayPage = document.getElementById('how-to-play');
+const instructionsButton = document.getElementById('instructions-btn');
+const goBackButton = document.getElementById('go-back');
 let groguscore = 0;
 let grogulives = 1;
 
+instructionsButton.addEventListener('click', showInstructions)
+function showInstructions() {
+    howtoPlayPage.style.display = "flex";
+    startPage.style.display = "none";
+  }
+  goBackButton.addEventListener('click', showStartScreen)
+  function showStartScreen() {
+    startPage.style.display = "flex";
+    howtoPlayPage.style.display = "none";
+  }
+
 playButton.addEventListener('click', hideStartScreen)
-// initialize kaboom context
 function hideStartScreen(){
     startPage.style.display = "none";
 }
@@ -159,7 +172,7 @@ const camera = add([
         livesLeft.innerText = --grogulives;
         isAlive();
       //gameOver();
-
+    }}
 
 
 camera.onUpdate(() => {
