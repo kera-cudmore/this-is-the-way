@@ -1,6 +1,6 @@
 # This is the Way
 
-RESPONSIVE SITE IMAGE TO GO HERE
+![This is the Way Game](documentation/social-image.png)
 
 Team Livin' La Vida Yoda's Game entry for the May the Force be with you Code Institute Hackathon, May 2023.
 
@@ -8,7 +8,10 @@ Team Livin' La Vida Yoda's Game entry for the May the Force be with you Code Ins
 
 This mechanics for this game were created using [Kaboomjs](https://kaboomjs.com/).
 
-SHIELDS.IO BADGES TO GO HERE
+![GitHub last commit](https://img.shields.io/github/last-commit/kera-cudmore/this-is-the-way?color=red&style=for-the-badge)
+![GitHub contributors](https://img.shields.io/github/contributors/kera-cudmore/this-is-the-way?color=orange&style=for-the-badge)
+![GitHub language count](https://img.shields.io/github/languages/count/kera-cudmore/this-is-the-way?color=yellow&style=for-the-badge)
+![GitHub top language](https://img.shields.io/github/languages/top/kera-cudmore/this-is-the-way?color=green&style=for-the-badge)
 
 ---
 
