@@ -393,7 +393,7 @@ grogu.onUpdate(()=>{
 
     add([
       text("Game Over", 32),
-      pos(width() / 2, height() / 2),
+      pos(width() / 2, grogu.pos.y),
       origin("center"),
       layer("ui"),
     ]);
