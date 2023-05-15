@@ -3,7 +3,7 @@ const livesLeft = document.getElementById('lives-remaining');
 const startPage = document.getElementById('start-game');
 const playButton = document.getElementById('play-button');
 let groguscore = 0;
-let grogulives = 0;
+let grogulives = 1;
 
 playButton.addEventListener('click', hideStartScreen)
 // initialize kaboom context
@@ -139,6 +139,28 @@ const camera = add([
 ]);
 
 
+  function isAlive(){
+    if (grogulives <= 0){
+        livesLeft.innerText = "0";
+        gameOver()
+    }
+    else {
+        groguHealth = 200;
+    }
+  }
+
+
+  // Function to decrease grogu's health
+  function decreasegroguHealth(damage) {
+    groguHealth -= damage;
+    updateHealthBar();
+    if (groguHealth <= 0) {
+      // grogu is defeated, game over logic here
+        livesLeft.innerText = --grogulives;
+        isAlive();
+      //gameOver();
+
+
 
 camera.onUpdate(() => {
     cameraOffsetX=grogu.pos.x-width()/2;
@@ -146,6 +168,7 @@ camera.onUpdate(() => {
 
     if (cameraOffsetX>=240){
         cameraOffsetX=240;
+
     }
    
     if(cameraOffsetY>5){
@@ -344,9 +367,48 @@ function gameOver() {
 
 
 
+  function gameWin() {
+    // Clear the game scene
+    destroyJawas();
+    destroy(grogu);
+    destroy(healthBar);
+    add([
+      text("You Win!", 32),
+      pos(width() / 2, height() / 2),
+      origin("center"),
+      layer("ui"),
+    ]);
+
+  }
+
+  const resetButton = document.querySelector("#reset-button");
+  resetButton.addEventListener("click", () => {
+    location.reload();
+  });
+
+
+  function checkCollisionWithMando() {
+    grogu.collides("mando", () => {
+      gameWin();
+    });
+  }
   grogu.action(checkCollisionWithMando);
 
+  function gameOver() {
+    destroyJawas();
+    destroy(grogu);
+    destroy(healthBar);
 
+
+    add([
+      text("Game Over", 32),
+      pos(width() / 2, height() / 2),
+      origin("center"),
+      layer("ui"),
+    ]);
+
+    // Additional game over actions can be added here
+  }
 
   //layers
   layers(['bg', 'obj', 'ui'])
@@ -476,6 +538,7 @@ function gameOver() {
        pos(0, 0),
        layer("obj"),
        body(),
+
     ],
     "#": () => [
        sprite("brick"),

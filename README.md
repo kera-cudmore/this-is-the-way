@@ -20,6 +20,12 @@ As a user I would like:
 * A fun and original game experience with Madolorian music and imagery
 * Functionality to turn the music on/off
 
+As a user I would like:
+* Clear and concise instructions for the game
+* To have consistent feedback on my progress throughout the game (e.g. lives remaining)
+* To be able to move Grogu intuitively through the map
+* A fun and original game experience with Madolorian music and imagery
+* Functionality to turn the music on/off
 
 ### DESIGN
 We took inspiration for our color scheme from the planet Tatooine (specifically its iconic binary sunset!). Using [Adobe Color](https://color.adobe.com/create/image) we extracted a theme based on this image:
@@ -38,7 +44,21 @@ We cross referenced the colors using [Eight Shapes](www.https://contrast-grid.ei
 ![Results from the Eight Shapes test](/assets/images/eightshapes_contrastgrid.png)
 #### COLOUR SCHEME
 
-INFO ABOUT COLOUR SCHEME TO GO HERE
+We took inspiration for our color scheme from the planet Tatooine (specifically its iconic binary sunset!). Using [Adobe Color](https://color.adobe.com/create/image) we extracted a theme based on this image:
+
+![Movie still from the movie Star Wars IV: A New Hope](/assets/images/syfy_image.jpg)
+
+The following colors were selected:
+- ![#8C6175](https://placehold.co/15x15/8C6175/8C6175.png) Purple 
+- ![#40342d](https://placehold.co/15x15/40342d/40342d.png) Brown
+- ![#ef554b](https://placehold.co/15x15/ef554b/ef554b.png) Orange
+- ![#a6695b](https://placehold.co/15x15/a6695b/a6695b.png) Camel
+- ![#a66868](https://placehold.co/15x15/a66868/a66868.png) Dusty Pink
+
+We cross referenced the colors using [Eight Shapes](www.https://contrast-grid.eightshapes.com/) to test the contrast and made sure we used readable combinations throughout the website.
+
+![Results from the Eight Shapes test](/assets/images/eightshapes_contrastgrid.png)
+
 #### TYPOGRAPHY
 
 The Mandalorian font is well recogised for its distinctive strong angles and cutout of the Mandalorian in the character A.
@@ -124,6 +144,9 @@ Please refer to [TESTING.md](TESTING.md) for all testing carried out.
 
 * [Starfighter ship](https://starwars.fandom.com/wiki/Din_Djarin%27s_N-1_starfighter)
 * [Binary Sunsert on Tatooine](https://www.syfy.com/syfy-wire/tatooine-desert-planet-science-star-wars-boba-fett)
+
+
+
 ### ACKNOWLEDGMENTS
 
 Thank you to the Code Institute and their Hackteam for putting on these amazing events, and to our families who put up with us disappearing for a few days to code like mad!
