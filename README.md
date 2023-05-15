@@ -79,6 +79,27 @@ Space Mono is an original fixed-width type family designed by Colophon Foundry f
 
 Imagery used throughout the site is based on Star Wars and the Mandalorian.
 
+Grogu appears in his floating crib in the game.
+
+![Grogu Sprite](/assets/sprites/grogu-transit.png) 
+
+As the game is based on the planet of Tattoine, the enemies chosen are the Jawa. (Alamite sprites were also created and may appear in future versions of the game)
+
+![Jawa Sprite](/assets/sprites/Jawa.png)
+![Alamite Sprite](/assets/sprites/AlamiteDeathRight.png)
+
+Grogu's health boost is his favourite snack - a frog.
+
+![Frog Sprite](/assets/sprites/Frog(Points)Sprite.png)
+
+The Mandolorian who appears at the end of the level.
+
+![Mandolorian Sprite](/assets/sprites/Mando1stSprite.png)
+
+The background for the game was designed to reflect the inside of a sandcrawler vehicle.
+
+![Sandcrawler](/assets/sprites/sandcrawler-lvl.png)
+
 #### WIREFRAMES
 
 [Balsamiq](https://balsamiq.com/wireframes/) was used in our planning stage.
@@ -92,6 +113,8 @@ Imagery used throughout the site is based on Star Wars and the Mandalorian.
 INFO ABOUT THE SITE
 
 FAVICON INFO
+
+Our favicon is Grogu and he is displayed within the browser tabs and bookmarks bar. ![Grogu Favicon](/assets/favicon/favicon-16x16.png)
 
 ### ACCESSIBILITY
 
@@ -124,11 +147,18 @@ HOW TO DEPLOY INSTRUCTIONS HERE
 
 #### HOW TO FORK
 
-HOW TO FORK INFO HERE
+On the repo page for This is the Way, click the fork button in the top right. This will create a copy of the original repository in your GitHub, and you will be redirected to the main repo page for your forked version. Any changes you make in your forked repo won't affect the original repo until you create a pull request to have those changes merged into the original (more on this soon!)
 
 #### HOW TO CLONE
 
-HOW TO CLONE INFO HERE
+In your forked repo, click the code button and select HTTPS. Copy the link displayed.
+
+Open up your Integrated Development Environment (IDE) and in the terminal enter:
+
+```
+git clone {insert copied url here}
+```
+This will then clone the project for you to work on locally.
 
 ## TESTING
 
