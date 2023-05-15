@@ -155,15 +155,15 @@ const camera = add([
 ]);
 
 
-  function isAlive(){
-    if (grogulives <= 0){
-        livesLeft.innerText = "0";
-        gameOver()
-    }
-    else {
-        groguHealth = 200;
-    }
-  }
+//   function isAlive(){
+//     if (grogulives <= 0){
+//         livesLeft.innerText = "0";
+//         gameOver()
+//     }
+//     else {
+//         groguHealth = 200;
+//     }
+//   }
 
 
   // Function to decrease grogu's health
@@ -310,7 +310,8 @@ camera.onUpdate(() => {
 
   grogu.collides('frogs', (f) => {
     destroy(f)
-    livesLeft.innerText = ++grogulives;
+    groguscore++;
+    score.innerText = groguscore;
   })
 
   
