@@ -79,6 +79,27 @@ Space Mono is an original fixed-width type family designed by Colophon Foundry f
 
 Imagery used throughout the site is based on Star Wars and the Mandalorian.
 
+Grogu appears in his floating crib in the game.
+
+![Grogu Sprite](/assets/sprites/grogu-transit.png) 
+
+As the game is based on the planet of Tattoine, the enemies chosen are the Jawa. (Alamite sprites were also created and may appear in future versions of the game)
+
+![Jawa Sprite](/assets/sprites/Jawa.png)
+![Alamite Sprite](/assets/sprites/AlamiteDeathRight.png)
+
+Grogu's health boost is his favourite snack - a frog.
+
+![Frog Sprite](/assets/sprites/Frog(Points)Sprite.png)
+
+The Mandolorian who appears at the end of the level.
+
+![Mandolorian Sprite](/assets/sprites/Mando1stSprite.png)
+
+The background for the game was designed to reflect the inside of a sandcrawler vehicle.
+
+![Sandcrawler](/assets/sprites/sandcrawler-lvl.png)
+
 #### WIREFRAMES
 
 [Balsamiq](https://balsamiq.com/wireframes/) was used in our planning stage.
@@ -92,6 +113,8 @@ Imagery used throughout the site is based on Star Wars and the Mandalorian.
 INFO ABOUT THE SITE
 
 FAVICON INFO
+
+Our favicon is Grogu and he is displayed within the browser tabs and bookmarks bar. ![Grogu Favicon](/assets/favicon/favicon-16x16.png)
 
 ### ACCESSIBILITY
 
