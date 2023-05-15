@@ -187,22 +187,9 @@ we utilised the console in the developer tools to work through small sections of
 
 [jshint](https://jshint.com/) was used to validate the JavaScript.
 
-* [game.js]()
+* game.js
 * [music.js](documentation/testing/music-js-testing.png)
 * [ee.js](documentation/testing/ee-js-testing.png)
-
-## BUGS
-
-### SOLVED BUGS
-
-| Solved Bug No | Bug | How Resolved |
-| :--- | :--- | :--- |
-| 1 | Camera Position not working | |
-### KNOWNN BUGS
-
-| Bug No | Bug |
-| :--- | :--- |
-| 1 | Mando not displaying at the end of the game |
 
 ## CREDITS
 
