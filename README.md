@@ -11,6 +11,9 @@ Team Livin' La Vida Yoda's Game entry for the May the Force be with you Code Ins
 ![GitHub language count](https://img.shields.io/github/languages/count/kera-cudmore/this-is-the-way?color=yellow&style=for-the-badge)
 ![GitHub top language](https://img.shields.io/github/languages/top/kera-cudmore/this-is-the-way?color=green&style=for-the-badge)
 
+<img width="120px" height="120px" src="https://api.eu.badgr.io/public/assertions/ndqQRxNWRsKmCj7WPl4ANQ/image">
+
+
 ---
 
 ## USER EXPERIENCE
