@@ -1,10 +1,9 @@
-# This is the Way
-
 ![This is the Way Game](documentation/social-image.png)
+# THIS IS THE WAY
 
 Team Livin' La Vida Yoda's Game entry for the May the Force be with you Code Institute Hackathon, May 2023.
 
-'This Is The Way' is a one-player game for large screens (not currently available for mobile devices - Patience, my young Padawan!) You play Grogu from 'The Mandolorian', facing off against Jawas and collecting frogs before reuniting with The Mandolorian. Click 'Play Music' to get the full 'Mandolorian' experience!
+'This Is The Way' is a one-player game for large screens (not currently available for mobile devices - Patience, my young Padawan!) You play Grogu from 'The Mandalorian', facing off against Jawas and collecting frogs before reuniting with The Mandalorian. Click 'Play Music' to get the full 'Mandalorian' experience!
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/kera-cudmore/this-is-the-way?color=red&style=for-the-badge)
 ![GitHub contributors](https://img.shields.io/github/contributors/kera-cudmore/this-is-the-way?color=orange&style=for-the-badge)
@@ -18,25 +17,25 @@ Team Livin' La Vida Yoda's Game entry for the May the Force be with you Code Ins
 
 ## USER EXPERIENCE
 
-### USER STORIES
+### User Stories
 
 As a user I would like:
 
 * Clear and concise instructions for the game
 * To have consistent feedback on my progress throughout the game (e.g. lives remaining)
 * To be able to move Grogu intuitively through the map
-* A fun and original game experience with Madolorian music and imagery
+* A fun and original game experience with Mandalorian music and imagery
 * Functionality to turn the music on/off
 
-### DESIGN
+### Design
 
-#### COLOUR SCHEME
+#### Colour Scheme
 
-We took inspiration for our color scheme from the planet Tatooine (specifically its iconic binary sunset!). Using [Adobe Color](https://color.adobe.com/create/image) we extracted a theme based on this image:
+We took inspiration for our colour scheme from the planet Tatooine (specifically its iconic binary sunset!). Using [Adobe Color](https://color.adobe.com/create/image) we extracted a theme based on this image:
 
 ![Movie still from the movie Star Wars IV: A New Hope](/assets/images/syfy_image.jpg)
 
-The following colors were selected:
+The following colours were selected:
 - ![#8C6175](https://placehold.co/15x15/8C6175/8C6175.png) Purple 
 - ![#40342d](https://placehold.co/15x15/40342d/40342d.png) Brown
 - ![#ef554b](https://placehold.co/15x15/ef554b/ef554b.png) Orange
@@ -47,9 +46,9 @@ We cross referenced the colors using [Eight Shapes](www.https://contrast-grid.ei
 
 ![Results from the Eight Shapes test](/assets/images/eightshapes_contrastgrid.png)
 
-#### TYPOGRAPHY
+#### Typography
 
-The Mandalorian font is well recogised for its distinctive strong angles and cutout of the Mandalorian in the character A.
+The Mandalorian font is well recognised for its distinctive strong angles and cutout of the Mandalorian in the character A.
 
 We sourced the font Mandalore from [dafonts](https://www.dafont.com/mandalore.font) and then converted the font to a WebFont Kit to allow the font to be used on our site using [transfonter](https://transfonter.org/).
 
@@ -61,7 +60,7 @@ Space Mono is an original fixed-width type family designed by Colophon Foundry f
 
 'Monospace' is the back-up font for this site.
 
-#### IMAGERY
+#### Imagery
 
 Imagery used throughout the site is based on Star Wars and the Mandalorian.
 
@@ -78,15 +77,15 @@ Grogu's health boost is his favourite snack - a frog.
 
 ![Frog Sprite](/assets/sprites/Frog(Points)Sprite.png)
 
-The Mandolorian who appears at the end of the level.
+The Mandalorian who appears at the end of the level.
 
-![Mandolorian Sprite](/assets/sprites/Mando1stSprite.png)
+![Mandalorian Sprite](/assets/sprites/Mando1stSprite.png)
 
 The background for the game was designed to reflect the inside of a sandcrawler vehicle.
 
 ![Sandcrawler](/assets/sprites/sandcrawler-lvl.png)
 
-#### WIREFRAMES
+#### Wireframes
 
 [Balsamiq](https://balsamiq.com/wireframes/) was used to create our wireframes in the planning stage.
 
@@ -94,48 +93,46 @@ The background for the game was designed to reflect the inside of a sandcrawler 
 
 ![Without Loading Screen](/assets/images/wireframe1.png)
 
-### FEATURES
+## FEATURES
 
 The site is comprised of two pages, the index page and the 404 page.
 
-#### Start Overlay 
+### Start Overlay 
 When the site is loaded the user will be shown the start overlay which gives the user the option of learning how to play, and a start button to start playing.
 
 ![Start Overlay](documentation/feature-start-overlay.png)
 
-#### Game instructions
+### Game Instructions
 
 ![Game instructions](documentation/feature-how-to-play.png)
 
-#### Game won
+### Game Won
 
 Once the player has completed the game, a message is displayed to let them know they were successful!
 
 ![Game completed](documentation/feature-win-screen.png)
 
-#### Game lost
+### Game Lost
 
 If the player loses the game, a message will be displayed to let them know the game is over.
 
 ![Game over](documentation/feature-game-over.png)
 
-#### Favicon
+### Favicon
 
 Our favicon is an image of Grogu and he is displayed within the browser tabs and bookmarks bar.
 
 ![Favicon](https://github.com/kera-cudmore/this-is-the-way/assets/92253071/2aeb5eab-e64c-41f9-ba2f-a0ab74e5b9be)
 
-### ACCESSIBILITY
-
 ## TECHNOLOGIES USED
 
-### LANGUAGES USED
+### Languages Used
 
 * HTML
 * CSS
 * JavaScript
 
-### FRAMEWORKS, LIBRARIES & PROGRAMS USED
+### Frameworks, Libraries & Programs Used
 
 * [Balsamiq](https://balsamiq.com/) - To create the wireframes
 * [Git](https://git-scm.com/) - For version control
@@ -150,7 +147,7 @@ Our favicon is an image of Grogu and he is displayed within the browser tabs and
 
 ## DEPLOYMENT & DEVELOPMENT
 
-### DEPLOYMENT
+### Deployment
 
 The site is deployed at GitHub Pages - [This is the Way](https://kera-cudmore.github.io/this-is-the-way/index.html).
 
@@ -163,9 +160,9 @@ To Deploy the site using GitHub Pages:
 5. From the source dropdown select main branch and press save.
 6. The site has now been deployed, please note that this process may take a few minutes before the site goes live.
 
-### LOCAL DEVELOPMENT
+### Local Development
 
-#### HOW TO FORK & Clone
+#### How To Fork & Clone
 
 A wiki page was created on the repository with instructions on how to fork and clone the project. [View Wiki Page Here](https://github.com/kera-cudmore/this-is-the-way/wiki/Project-Set-Up-for-Collaborators)
 
@@ -197,22 +194,18 @@ we utilised the console in the developer tools to work through small sections of
 
 ## CREDITS
 
-### CODE USED
-
-### CONTENT
-
-### MEDIA
+### Media
 
 * [Starfighter ship](https://starwars.fandom.com/wiki/Din_Djarin%27s_N-1_starfighter)
 * [Binary Sunsert on Tatooine](https://www.syfy.com/syfy-wire/tatooine-desert-planet-science-star-wars-boba-fett)
+* [Grogu Image for Favicon](https://seeklogo.com/vector-logo/398604/grogu-the-child)
 
 
-
-### ACKNOWLEDGMENTS
+### Acknowledgements
 
 Thank you to the Code Institute and their Hackteam for putting on these amazing events, and to our families who put up with us disappearing for a few days to code like mad!
 
-### TEAM LIVIN' LA VIDA YODA
+### Team Livin' La Vida Yoda
 
 * [Christian Göran](https://www.linkedin.com/in/christiangoran/)
 * [Jody Murray](https://www.linkedin.com/in/jody-murray-4b6818234/)
